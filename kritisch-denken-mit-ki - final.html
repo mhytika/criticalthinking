@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KI Kritisch Denken – GK &amp; Wirtschaft</title>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gelb:#FFFC00;--sw:#2A2623;--w:#FFF;--g1:#F4F3F3;--g2:#E4E0E0;--g3:#BBB6B5;--g4:#918C8C;--g5:#6D6766;--g6:#47403C;--gk:#094954;--gkl:#E8F4F6;--wbs:#6B108C;--wbsl:#F3E8F9;--ok:#2E7D32;--okb:#E8F5E9;--er:#C62828;--erb:#FFEBEE;--wb:#FFF8E1;--dt:#2471A3;--dg:#C0392B;--da:#1E8449;--or:#E65100;--orb:#FFF3E0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--g1);color:var(--sw);line-height:1.65}
+.page{display:none}.page.on{display:block}
+.hero{background:var(--sw);position:relative}.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--gelb);pointer-events:none}
+.hero-in{max-width:900px;margin:0 auto;padding:60px 30px 50px}
+.hero h1{font-family:'Bitter',serif;font-size:2.5rem;color:var(--w);font-weight:700;line-height:1.2;margin-bottom:12px}
+.hero h1 em{color:var(--gelb);font-style:normal}
+.hero p{color:var(--g3);font-size:1.1rem;max-width:600px}
+.body0{max-width:900px;margin:0 auto;padding:40px 30px 60px}
+.body0 h2{font-family:'Bitter',serif;font-size:1.4rem;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.crd{background:var(--w);border-radius:10px;padding:28px;cursor:pointer;box-shadow:0 2px 8px rgba(42,38,35,.09);transition:transform .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.crd:hover{transform:translateY(-3px)}
+.crd.cgk{border-top:4px solid var(--gk)}
+.crd.cwbs{border-top:4px solid var(--wbs)}
+.crd.cgk h3{color:var(--gk)}.crd.cwbs h3{color:var(--wbs)}
+.crd h3{font-family:'Bitter',serif;font-size:1.2rem;margin-bottom:8px}
+.crd p{font-size:.9rem;color:var(--g5);margin-bottom:12px}
+.crd .t{display:inline-block;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:3px}
+.crd.cgk .t{background:var(--gkl);color:var(--gk)}.crd.cwbs .t{background:var(--wbsl);color:var(--wbs)}
+.ft{text-align:center;padding:16px;font-size:.72rem;color:var(--g4);border-top:1px solid var(--g2)}
+
+.top{position:fixed;top:0;left:0;right:0;height:52px;background:var(--sw);display:flex;align-items:center;padding:0 20px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gelb);pointer-events:none}
+.top-title{font-family:'Bitter',serif;color:var(--w);font-size:.95rem;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.top-title:hover{opacity:.8}
+.top-title em{color:var(--gelb);font-style:normal}
+.top button{margin-left:auto;background:none;border:1px solid var(--g5);color:var(--g3);padding:5px 14px;border-radius:4px;cursor:pointer;font-size:.8rem;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.top-path{color:var(--g3);font-size:.78rem;margin-left:12px}
+
+.side{position:fixed;top:52px;left:0;bottom:0;width:250px;background:var(--w);border-right:1px solid var(--g2);padding:16px 12px;overflow-y:auto;z-index:90;transition:transform .3s}
+.side h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--g4);margin:14px 0 8px}
+.si{display:flex;align-items:center;gap:8px;padding:8px 10px;margin-bottom:3px;border-radius:6px;font-size:.83rem;color:var(--g5)}
+.si.ck{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.si.ck:hover{background:var(--g1)}
+.si.on{background:var(--gkl);color:var(--gk);font-weight:600}
+.si.won{background:var(--wbsl);color:var(--wbs);font-weight:600}
+.si.dn{color:var(--ok)}
+.si i{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;background:var(--g2);color:var(--g5);flex-shrink:0;font-style:normal}
+.si.on i,.si.won i{background:var(--gk);color:var(--w)}
+.si.won i{background:var(--wbs)}
+.si.dn i{background:var(--ok);color:var(--w)}
+.prg{padding-top:16px;border-top:1px solid var(--g2);margin-top:16px}
+.prg p{font-size:.75rem;color:var(--g4)}
+.pbar{height:6px;background:var(--g2);border-radius:3px;overflow:hidden;margin-top:6px}
+.pfil{height:100%;background:var(--gelb);transition:width .4s}
+
+.cnt{margin-left:250px;margin-top:52px;padding:32px 40px 60px;max-width:800px}
+.scr{display:none}.scr.on{display:block;animation:fi .35s}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.bdg{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:3px 10px;border-radius:3px;margin-bottom:10px}
+.bdg-a{background:var(--gkl);color:var(--gk)}.bdg-u{background:var(--wb);color:#F57F17}.bdg-m{background:#E8EAF6;color:#283593}
+.bdg-wa{background:var(--wbsl);color:var(--wbs)}
+h2{font-family:'Bitter',serif;font-size:1.5rem;margin-bottom:8px}
+.ld{font-size:1rem;color:var(--g5);margin-bottom:24px}
+
+.cd{background:var(--w);border:1px solid var(--g2);border-radius:10px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(42,38,35,.07)}
+.cd h3{font-family:'Bitter',serif;font-size:1.1rem;margin-bottom:12px}
+.ic{background:var(--wb);border-left:4px solid #FBC02D;border-radius:0 6px 6px 0;padding:16px 20px;margin-bottom:20px;font-size:.9rem;line-height:1.6}
+.ki{background:#F5F5F5;border-left:4px solid var(--sw);padding:20px 24px;margin-bottom:20px;font-size:.95rem;line-height:1.7;border-radius:0 6px 6px 0}
+.ki small{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g4);margin-bottom:10px}
+.kp{padding:8px 12px;border-radius:6px;margin-bottom:8px;cursor:pointer;border:2px solid transparent;transition:all .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.kp:hover{border-color:var(--g3)}
+.kp.ag{background:#E8F5E9;border-color:#66BB6A}.kp.ay{background:#FFF8E1;border-color:#FBC02D}.kp.ar{background:#FFEBEE;border-color:#EF5350}
+.at{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.ab{padding:6px 14px;border:2px solid var(--g2);border-radius:20px;background:var(--w);cursor:pointer;font-size:.8rem;font-weight:500;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ab.ag{border-color:#66BB6A;background:#E8F5E9}.ab.ay{border-color:#FBC02D;background:#FFF8E1}.ab.ar{border-color:#EF5350;background:#FFEBEE}
+
+.opt{display:block;padding:10px 14px;margin-bottom:6px;border:2px solid var(--g2);border-radius:6px;cursor:pointer;font-size:.9rem;background:var(--w);transition:all .15s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.opt:hover{border-color:var(--gk);background:var(--gkl)}
+.opt.sl{border-color:var(--gk);background:var(--gkl);font-weight:600}
+.opt.wsl{border-color:var(--wbs);background:var(--wbsl);font-weight:600}
+.opt.ok{border-color:var(--ok);background:var(--okb);pointer-events:none}
+.opt.no{border-color:var(--er);background:var(--erb);pointer-events:none}
+.opt.off{pointer-events:none;opacity:.6}
+.opt.mu{padding-left:36px;position:relative}
+.opt.mu::before{content:'';position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;border:2px solid var(--g3);border-radius:3px}
+.opt.mu.sl::before,.opt.mu.wsl::before{background:var(--gk);border-color:var(--gk)}
+.opt.mu.wsl::before{background:var(--wbs);border-color:var(--wbs)}
+.opt.mu.sl::after,.opt.mu.wsl::after{content:'\2713';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#fff;font-size:.7rem;font-weight:700}
+
+.fb{padding:14px 18px;border-radius:6px;margin:12px 0 16px;font-size:.9rem;line-height:1.6}
+.fok{background:var(--okb);border-left:4px solid var(--ok)}
+.fer{background:var(--erb);border-left:4px solid var(--er)}
+.fwarn{background:var(--orb);border-left:4px solid var(--or)}
+
+.fp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;padding-bottom:20px;border-bottom:2px solid var(--g2)}
+.fx{padding:14px;border:2px solid var(--g2);border-radius:6px;font-size:.9rem;line-height:1.5;background:var(--g1)}
+.fx b{display:block;font-size:.75rem;color:var(--g4);margin-bottom:6px;font-weight:700}
+
+.wr{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.wr label{width:260px;font-size:.88rem;flex-shrink:0}
+.wr input[type=range]{flex-grow:1}
+.wv{width:32px;text-align:center;font-weight:700;color:var(--gk)}
+
+.sg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+.sc{padding:16px;border-radius:6px;text-align:center}
+.sc h4{font-size:.8rem;margin-bottom:6px}
+.sc p{font-size:.8rem;color:var(--g5)}
+
+.chi{padding:12px 16px;border:1px solid var(--g2);border-radius:6px;margin-bottom:8px;background:var(--w)}
+.chi label{font-size:.9rem;font-weight:500;display:block;margin-bottom:8px}
+.chi select{width:100%;padding:8px 10px;border:1px solid var(--g2);border-radius:4px;font-size:.88rem}
+.chi textarea,.cd textarea{width:100%;padding:14px;border:1px solid var(--g2);border-radius:4px;font-size:.88rem;font-family:inherit;resize:vertical;min-height:200px;max-height:600px;line-height:1.6;display:block}
+
+.btn{display:inline-flex;padding:10px 22px;border:none;border-radius:6px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.bg{background:var(--gk);color:var(--w)}.bg:hover{background:#0B6070}
+.bw{background:var(--wbs);color:var(--w)}.bw:hover{background:#8B14B0}
+.ba{background:var(--gelb);color:var(--sw)}.ba:hover{background:#E5E300}
+.bp{background:var(--sw);color:var(--w)}.bp:hover{background:var(--g6)}
+.btn:disabled{opacity:.4;cursor:default}
+.brow{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+
+.toggle{background:none;border:1px solid var(--g3);border-radius:4px;padding:4px 10px;font-size:.78rem;cursor:pointer;color:var(--g5);margin-bottom:12px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.toggle:hover{background:var(--g1)}
+.toggle-content{display:none;margin-bottom:16px}
+.toggle-content.open{display:block}
+
+.help-btn{background:var(--gkl);border:1px solid var(--gk);border-radius:4px;padding:4px 12px;font-size:.78rem;cursor:pointer;color:var(--gk);font-weight:600;margin-bottom:12px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.help-content{display:none;margin-bottom:16px}
+.help-content.open{display:block}
+
+.br2{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.br2 span:first-child{width:60px;font-size:.82rem;text-align:right}
+.br2 .tk{flex-grow:1;height:18px;background:var(--g2);border-radius:3px;overflow:hidden}
+.br2 .fl{height:100%;border-radius:3px;transition:width .5s}
+
+/* Mobile */
+.mob-menu{display:none;align-items:center;justify-content:center;width:40px;height:40px;cursor:pointer;margin-right:10px;font-size:1.3rem;color:var(--w);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(max-width:800px){
+.side{transform:translateX(-100%)}
+.side.open{transform:translateX(0)}
+.cnt{margin-left:0;padding:24px 16px 60px}
+.cards,.fp,.sg{grid-template-columns:1fr}
+.wr{flex-wrap:wrap}.wr label{width:100%;margin-bottom:4px}
+.mob-menu{display:flex}
+}
+
+/* === NEW NAVIGATION PAGES === */
+.nav-hero{background:var(--sw);position:relative}
+.nav-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:var(--gelb);pointer-events:none}
+.nav-hero-in{max-width:960px;margin:0 auto;padding:56px 30px 44px}
+.nav-hero h1{font-family:'Bitter',serif;font-size:2.4rem;color:var(--w);font-weight:700;line-height:1.2;margin-bottom:10px}
+.nav-hero h1 em{color:var(--gelb);font-style:normal}
+.nav-hero p{color:var(--g3);font-size:1.05rem;max-width:620px}
+.nav-body{max-width:960px;margin:0 auto;padding:36px 30px 50px}
+.nav-body h2{font-family:'Bitter',serif;font-size:1.3rem;margin-bottom:18px}
+.nav-body .cards{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.nav-back{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:var(--g5);cursor:pointer;margin-bottom:20px;padding:4px 0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.nav-back:hover{color:var(--sw)}
+.crd .sub{display:block;font-size:.78rem;color:var(--g4);margin-top:4px;font-weight:400}
+@media(max-width:800px){.nav-body .cards{grid-template-columns:1fr}}
+
+/* === PROMPT LIBRARY === */
+.pb-top{position:fixed;top:0;left:0;right:0;height:52px;background:var(--sw);display:flex;align-items:center;padding:0 20px;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.pb-top::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gelb);pointer-events:none}
+.pb-top-title{font-family:'Bitter',serif;color:var(--w);font-size:.95rem;font-weight:600;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pb-top-title:hover{opacity:.8}
+.pb-top-title em{color:var(--gelb);font-style:normal}
+.pb-top-path{color:var(--g3);font-size:.78rem;margin-left:12px}
+.pb-top button{margin-left:auto;background:none;border:1px solid var(--g5);color:var(--g3);padding:5px 14px;border-radius:4px;cursor:pointer;font-size:.8rem;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pb-side{position:fixed;top:52px;left:0;bottom:0;width:250px;background:var(--w);border-right:1px solid var(--g2);padding:16px 12px;overflow-y:auto;z-index:90;transition:transform .3s}
+.pb-side h4{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--g4);margin:14px 0 8px}
+.pb-si{display:flex;align-items:center;gap:8px;padding:7px 10px;margin-bottom:2px;border-radius:6px;font-size:.82rem;color:var(--g5);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pb-si:hover{background:var(--g1)}
+.pb-si.on{background:var(--wbsl);color:var(--wbs);font-weight:600}
+.pb-si .tg{font-size:.6rem;padding:1px 5px;border-radius:2px;font-weight:700;flex-shrink:0}
+.tg-e{background:#E8F4F6;color:#094954}.tg-u{background:var(--wbsl);color:var(--wbs)}.tg-a{background:var(--wbsl);color:var(--wbs)}.tg-a{background:var(--wbsl);color:var(--wbs)}
+.pb-cnt{margin-left:250px;margin-top:52px;padding:32px 40px 60px;max-width:850px}
+.pb-mob{display:none;align-items:center;justify-content:center;width:40px;height:40px;cursor:pointer;margin-right:10px;font-size:1.3rem;color:var(--w);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+
+/* Prompt cards on overview */
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.pm-card{background:var(--w);border:1px solid var(--g2);border-radius:8px;padding:18px;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pm-card:hover{border-color:var(--wbs);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.pm-card h4{font-family:'Bitter',serif;font-size:.95rem;color:var(--wbs);margin-bottom:4px}
+.pm-card p{font-size:.82rem;color:var(--g5);line-height:1.4}
+.pm-card .pm-tag{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:2px;margin-bottom:6px}
+
+/* Prompt detail */
+.pm-detail .pm-meta{display:flex;gap:10px;align-items:center;margin-bottom:16px}
+.pm-detail .pm-meta .pm-tag{font-size:.7rem;padding:3px 10px;border-radius:3px}
+.pm-detail .pm-meta span{font-size:.88rem;color:var(--g5)}
+.pm-detail h2{font-family:'Bitter',serif;font-size:1.5rem;margin-bottom:6px}
+.pm-detail .pm-kurz{font-size:.95rem;color:var(--g5);font-style:italic;margin-bottom:20px}
+.pm-box{background:var(--g1);border:1px solid var(--g2);border-radius:8px;padding:24px;position:relative}
+.pm-box-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--wbs);margin-bottom:12px}
+.pm-box pre{font-family:'Source Sans 3',sans-serif;font-size:.88rem;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;color:var(--sw)}
+.pm-copy{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:8px 18px;background:var(--wbs);color:var(--w);border:none;border-radius:6px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.pm-copy:hover{background:#8B14B0}
+.pm-copy.copied{background:var(--ok)}
+
+@media(max-width:800px){
+.pb-side{transform:translateX(-100%)}
+.pb-side.open{transform:translateX(0)}
+.pb-cnt{margin-left:0;padding:24px 16px 60px}
+.pm-grid{grid-template-columns:1fr}
+.pb-mob{display:flex}
+}
+
+
+.intro-steps{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.intro-step{background:var(--w);border:1px solid var(--g2);border-radius:8px;padding:18px}
+.intro-step .step-nr{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--wbs);color:var(--w);font-size:.8rem;font-weight:700;margin-bottom:8px}
+.intro-step h4{font-family:'Bitter',serif;font-size:.95rem;margin-bottom:6px}
+.intro-step p{font-size:.85rem;color:var(--g5);line-height:1.5}
+.hp-box{background:var(--w);border:2px solid var(--wbs);border-radius:10px;padding:24px;margin:24px 0}
+.hp-box-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.hp-box-head h3{font-family:'Bitter',serif;font-size:1.1rem;color:var(--wbs)}
+.hp-toggle{background:var(--wbsl);border:1px solid var(--wbs);border-radius:6px;padding:8px 16px;font-size:.85rem;color:var(--wbs);font-weight:600;cursor:pointer;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.hp-toggle:hover{background:var(--wbs);color:var(--w)}
+.hp-toggle-content{display:none;margin-top:12px}
+.hp-toggle-content.open{display:block}
+.hint-cards{display:grid;gap:10px;margin:20px 0}
+.hint-card{background:var(--g1);border-left:4px solid var(--wbs);border-radius:0 6px 6px 0;padding:12px 16px;font-size:.88rem;line-height:1.5}
+.hint-card strong{color:var(--wbs)}
+@media(max-width:800px){.intro-steps{grid-template-columns:1fr}#labFoot{left:0!important}}
+</style>
+</head>
+<body>
+<!-- ===== SEITE 0: STARTSEITE ===== -->
+<div class="page on" id="P0">
+<div class="nav-hero"><div class="nav-hero-in">
+<h1><em>KI</em> Kritisch Denken</h1>
+<p>KI-Outputs prüfen und KI als Denkpartner nutzen – Werkzeuge für den Fachunterricht.</p>
+</div></div>
+<div class="nav-body"><h2>Wähle dein Fach</h2>
+<div class="cards">
+<div class="crd cgk" id="navGK"><h3>Gemeinschaftskunde</h3></div>
+<div class="crd cwbs" id="navWBS"><h3>Wirtschaft / WBS</h3></div>
+</div></div>
+<div class="ft">Zentrum für Schulqualität und Lehrerbildung Baden-Württemberg (ZSL) – Yvonne Burghardt, Antje Kaz, Tobias Naber</div>
+</div>
+
+<!-- ===== SEITE 1a: GK WAHL ===== -->
+<div class="page" id="Pgk">
+<div class="nav-hero"><div class="nav-hero-in">
+<h1><em>KI</em> Kritisch Denken</h1>
+<p>Gemeinschaftskunde – Wähle deinen Zugang</p>
+</div></div>
+<div class="nav-body">
+<div class="nav-back" id="gkBack">← Zurück zur Fachauswahl</div>
+<div class="cards" style="grid-template-columns:1fr">
+<div class="crd cgk" id="startGK"><h3>KI-Output prüfen</h3><p>Grundrechte &amp; KI-Überwachung: Analysiere einen KI-Text systematisch, bilde dir ein Urteil und arbeite selbst mit KI.</p><span class="t">Critical-Thinking-Lab · Tobias Naber</span><span class="sub">3 Fälle · ca. 20 Min</span></div>
+</div>
+<div style="margin-top:24px;padding:16px 20px;background:var(--g1);border-radius:8px;border-left:4px solid var(--gelb)"><p style="font-size:.88rem;color:var(--g5)"><strong>Prompt-Module für GK</strong> sind in Vorbereitung und werden hier ergänzt.</p></div>
+</div>
+<div class="ft">KI-Output prüfen von Tobias Naber · ZSL Baden-Württemberg</div>
+</div>
+
+<!-- ===== SEITE 1b: WBS WAHL ===== -->
+<div class="page" id="Pwbs">
+<div class="nav-hero"><div class="nav-hero-in">
+<h1><em>KI</em> Kritisch Denken</h1>
+<p>Wirtschaft / WBS – Wähle deinen Zugang</p>
+</div></div>
+<div class="nav-body">
+<div class="nav-back" id="wbsBack">← Zurück zur Fachauswahl</div>
+<div class="cards">
+<div class="crd cwbs" id="startWBS"><h3>KI-Output prüfen</h3><p>Verbraucher &amp; Plattformen: Durchschaue Geschäftsmodelle und prüfe KI-Marktanalysen systematisch.</p><span class="t">Critical-Thinking-Lab · Tobias Naber</span><span class="sub">3 Fälle · ca. 20 Min</span></div>
+<div class="crd cwbs" id="startPB"><h3>KI als Denkpartner</h3><p>Mit KI im Dialog denken: Perspektiven wechseln, Folgen abschätzen, Urteile bilden.</p><span class="t">Prompt-Module · Yvonne Burghardt</span><span class="sub">11 dialogische Formate</span></div>
+</div></div>
+<div class="ft">Zentrum für Schulqualität und Lehrerbildung Baden-Württemberg (ZSL) – Yvonne Burghardt, Antje Kaz, Tobias Naber</div>
+</div>
+
+<!-- ===== SEITE 2: PROMPT-BIBLIOTHEK ===== -->
+<div class="page" id="Ppb">
+<div class="pb-top">
+<div class="pb-mob" id="pbMob">☰</div>
+<div class="pb-top-title" id="pbHome"><em>KI</em> Kritisch Denken</div>
+<span class="pb-top-path">· Wirtschaft/WBS · KI als Denkpartner</span>
+<button id="pbBack">← Zurück</button>
+</div>
+<div class="pb-side" id="pbSide">
+<div class="pb-si" data-pm="guide" style="font-weight:600;color:var(--wbs);margin-bottom:8px">🧠 Anleitung &amp; Hauptprompt</div>
+<h4>Analysekompetenz</h4>
+<div class="pb-si" data-pm="1"><span class="tg tg-e">E</span> 5-Why-Methode</div>
+<div class="pb-si" data-pm="0"><span class="tg tg-e">E</span> Perspektiven-Spiel</div>
+<h4>Urteilskompetenz</h4>
+<div class="pb-si" data-pm="0b"><span class="tg tg-e">E</span> Perspektiven-Spiel</div>
+<div class="pb-si" data-pm="2"><span class="tg tg-a">A</span> Ampel-Fazit</div>
+<div class="pb-si" data-pm="3"><span class="tg tg-a">A</span> Inneres Team</div>
+<div class="pb-si" data-pm="4"><span class="tg tg-a">A</span> Gedankenexperiment</div>
+<div class="pb-si" data-pm="5"><span class="tg tg-a">A</span> Metapher-Fazit</div>
+<div class="pb-si" data-pm="6"><span class="tg tg-a">A</span> Landkarten-Fazit</div>
+<div class="pb-si" data-pm="7"><span class="tg tg-a">A</span> Magnetfeld-Fazit</div>
+<h4>Handlungskompetenz</h4>
+<div class="pb-si" data-pm="8"><span class="tg tg-e">E</span> Folgen-Navigator</div>
+<div class="pb-si" data-pm="9"><span class="tg tg-e">E</span> Entscheidungsarchitekt</div>
+<h4>Methodenkompetenz</h4>
+<div class="pb-si" data-pm="10"><span class="tg tg-e">E</span> 3 Türen in die Zukunft</div>
+<div style="padding-top:14px;border-top:1px solid var(--g2);margin-top:14px">
+<div class="pb-si" data-pm="overview" style="font-weight:600;color:var(--wbs)">📋 Übersicht</div>
+</div>
+</div>
+<div class="pb-cnt" id="pbContent"></div>
+</div>
+
+<div class="page" id="P1">
+<div class="top"><div class="mob-menu" id="mobMenu">☰</div><div class="top-title" id="topHome"><em>KI</em> Kritisch Denken</div><span class="top-path" id="topPath"></span><button id="backBtn">← Zurück</button></div>
+<div class="side" id="sidebar"></div>
+<div class="cnt" id="screens"></div>
+<div class="ft" style="position:fixed;bottom:0;left:250px;right:0;z-index:50;background:var(--g1);font-size:.72rem;color:var(--g4);padding:6px 16px;border-top:1px solid var(--g2)" id="labFoot">KI-Output prüfen von Tobias Naber · ZSL Baden-Württemberg</div>
+</div>
+
+<script>
+var PATH='gk';
+var STEPS_GK=[{id:"F1P1",sec:"Fall 1 \u00b7 Analyse",l:"Sichten"},{id:"F1P2",sec:"Fall 1 \u00b7 Analyse",l:"Analysieren"},{id:"F1P3",sec:"Fall 1 \u00b7 Analyse",l:"Bilanz"},{id:"F2P1",sec:"Fall 2 \u00b7 Urteil",l:"Framing"},{id:"F2P2",sec:"Fall 2 \u00b7 Urteil",l:"Aussagen"},{id:"F2P3",sec:"Fall 2 \u00b7 Urteil",l:"Dein Urteil"},{id:"F3P1",sec:"Fall 3 \u00b7 Methode",l:"Prompten"},{id:"F3P2",sec:"Fall 3 \u00b7 Methode",l:"Checkliste"},{id:"F3P3",sec:"Fall 3 \u00b7 Methode",l:"KI-Logbuch"}];
+var STEPS_WBS=[{id:"W1P1",sec:"Fall 1 \u00b7 Analyse",l:"Sichten"},{id:"W1P2",sec:"Fall 1 \u00b7 Analyse",l:"Analysieren"},{id:"W1P3",sec:"Fall 1 \u00b7 Analyse",l:"Bilanz"},{id:"W2P1",sec:"Fall 2 \u00b7 Urteil",l:"Framing"},{id:"W2P2",sec:"Fall 2 \u00b7 Urteil",l:"Aussagen"},{id:"W2P3",sec:"Fall 2 \u00b7 Urteil",l:"Dein Urteil"},{id:"W3P1",sec:"Fall 3 \u00b7 Methode",l:"Prompten"},{id:"W3P2",sec:"Fall 3 \u00b7 Methode",l:"Checkliste"},{id:"W3P3",sec:"Fall 3 \u00b7 Methode",l:"KI-Logbuch"}];
+
+function ST(){return PATH==='gk'?STEPS_GK:STEPS_WBS;}
+function CL(){return PATH==='gk'?'gk':'wbs';}
+function BC(){return PATH==='gk'?'bg':'bw';}
+function SC(){return PATH==='gk'?'sl':'wsl';}
+function AC(){return PATH==='gk'?'on':'won';}
+
+var KITEXT_GK='<div class="ki"><small>KI-Output</small>'
++'<p><strong>Absatz 1:</strong> Die Einf\u00fchrung KI-gest\u00fctzter Video\u00fcberwachung auf \u00f6ffentlichen Pl\u00e4tzen ist ein wirksames Instrument der Kriminalit\u00e4tsbek\u00e4mpfung. Laut einer Studie des Deutschen Instituts f\u00fcr Urbane Sicherheit (DIUS) aus dem Jahr 2024 konnte in Pilotprojekten die Kriminalit\u00e4tsrate um bis zu 41% gesenkt werden.</p>'
++'<p><strong>Absatz 2:</strong> Kritiker wenden ein, dass solche Systeme in die Privatsph\u00e4re eingreifen k\u00f6nnten. Allerdings \u00fcberwiegen die Vorteile f\u00fcr die \u00f6ffentliche Sicherheit deutlich. In einer modernen Gesellschaft muss man bereit sein, gewisse Einschr\u00e4nkungen der Freiheit f\u00fcr ein h\u00f6heres Gut zu akzeptieren.</p>'
++'<p><strong>Absatz 3:</strong> Technisch arbeiten die Systeme mit neuronalen Netzen. Sie erkennen verd\u00e4chtige Bewegungsmuster zuverl\u00e4ssig und ohne Vorurteile, da die Algorithmen rein mathematisch arbeiten. Die Fehlerquote liegt laut Herstellerangaben bei unter 2%.</p></div>';
+
+var KITEXT_WBS='<div class="ki"><small>KI-Output</small>'
++'<p><strong>Absatz 1:</strong> Die neue Social-Media-Plattform ConnectFree revolutioniert den Markt f\u00fcr soziale Netzwerke. Anders als herk\u00f6mmliche Plattformen verzichtet ConnectFree vollst\u00e4ndig auf Werbung und bietet seinen 12 Millionen Nutzern einen kostenlosen, uneingeschr\u00e4nkten Service. Das Gesch\u00e4ftsmodell basiert laut einer Analyse des Fraunhofer-Instituts f\u00fcr Digitale Medien\u00f6konomie auf einem innovativen Community-Ansatz.</p>'
++'<p><strong>Absatz 2:</strong> Die Plattform verwendet einen hochmodernen Empfehlungsalgorithmus, der die Interessen der Nutzer perfekt erkennt und ihnen genau die Inhalte zeigt, die sie sehen m\u00f6chten. Dies f\u00fchrt zu einer durchschnittlichen Nutzungsdauer von 47 Minuten pro Tag \u2013 ein klares Zeichen hoher Nutzerzufriedenheit.</p>'
++'<p><strong>Absatz 3:</strong> Datenschutz wird bei ConnectFree gro\u00dfgeschrieben: Alle Daten werden ausschlie\u00dflich zur Verbesserung des Nutzererlebnisses verwendet und niemals an Dritte weitergegeben. Die Nutzungsbedingungen sind bewusst einfach gehalten. Nutzer k\u00f6nnen ihr Profil jederzeit mit einem Klick zu einer anderen Plattform \u00fcbertragen.</p></div>';
+
+function KIT(){return PATH==='gk'?KITEXT_GK:KITEXT_WBS;}
+
+var FB={
+LT1:['Das DIUS-Institut existiert nicht. Typische Halluzination: seri\u00f6s klingender Name + pr\u00e4zise Zahl.','Schau dir den Institutsnamen an \u2013 nicht auffindbar. Exakte Zahlen aus unbekannten Quellen = Halluzinationszeichen.'],
+LT2:['Suchmaschinen-Recherche entlarvt halluzinierte Namen am schnellsten. Die KI selbst fragen bringt nichts \u2013 sie best\u00e4tigt oft eigene Erfindungen.','Die KI nochmal fragen ist unzuverl\u00e4ssig. Sicherster Weg: Institutsnamen direkt googeln.'],
+LG1:['Der Text \u00fcbernimmt fast vollst\u00e4ndig die Perspektive der Sicherheitsbeh\u00f6rden. Die Gegenposition wird nur kurz erw\u00e4hnt und sofort entkr\u00e4ftet.','Wer profitiert am meisten im Text? Wessen Argumente werden am positivsten dargestellt?'],
+LA1:['Der Satz ist ein Werturteil, das als allgemeing\u00fcltige Wahrheit formuliert wird.','Der Satz ist eindeutig ein Werturteil, als Fakt getarnt.'],
+FR1:['Derselbe Fakt wird einmal als Erfolg (A) und einmal als Eingriff (B) erz\u00e4hlt. KI macht solche Framing-Entscheidungen st\u00e4ndig.','Die Zahlen sind identisch. Unterschied: identifizieren (Erfolg) vs. als verd\u00e4chtig einstufen (Eingriff).'],
+FR2:['Subjektives Sicherheitsgef\u00fchl und objektive Kriminalit\u00e4tsrate sind verschiedene Dinge.','Doch, beide k\u00f6nnen stimmen. Gef\u00fchl und Statistik messen verschiedene Dinge.'],
+FR3:['Fakten k\u00f6nnen in verschiedene Richtungen deuten. Dein Urteil h\u00e4ngt von der Gewichtung ab.','Weder Gef\u00fchl noch Statistik allein reichen. Man muss zwischen Wahrnehmung und Wirksamkeit unterscheiden.'],
+SW1:['Sachurteil. Die Trefferquote ist \u00fcberpr\u00fcfbar. Aber: Quelle ist der Hersteller \u2013 nicht unabh\u00e4ngig!','Das ist ein Sachurteil \u2013 \u00fcberpr\u00fcfbar.'],
+SW2:['Fehlschluss! Der Satz unterstellt, dass nur Schuldige Privatsph\u00e4re brauchen. Grundrechte sch\u00fctzen alle.','Das ist ein Fehlschluss. Grundrechte gelten f\u00fcr alle.'],
+SW3:['Werturteil. Eine normative Position, keine \u00fcberpr\u00fcfbare Tatsache.','Das ist ein Werturteil \u2013 eine moralische Bewertung.'],
+LM1:['Lena priorisiert Freiheitsrechte, Gleichbehandlung und Transparenz, Moritz priorisiert Sicherheit und Effizienz. Beide Gewichtungen sind begr\u00fcndbar \u2013 das macht politische Kontroversen aus.','Beide beziehen sich auf nachvollziehbare Kriterien. Weder ist pers\u00f6nliche Betroffenheit (Moritz\u2019 Oma) ein Schwachpunkt, noch gewinnt automatisch, wer mehr Kriterien nennt (Lena). Der Unterschied liegt in der Gewichtung.'],
+PR1:['Prompt 3 fordert Pro UND Contra plus drei Perspektiven. Die anderen sind einseitig \u2013 Trained-to-Please in Aktion.','Zwei Prompts fordern nur EINE Seite.'],
+WLT1:['Das Fraunhofer-Institut f\u00fcr Digitale Medien\u00f6konomie existiert in dieser Form nicht. Es gibt zwar Fraunhofer-Institute, aber keines mit diesem Namen. Typische Halluzination: seri\u00f6s klingende Marke + erfundene Spezialisierung.','Schau dir den genauen Institutsnamen an. Es gibt zwar Fraunhofer-Institute, aber keines mit genau diesem Namen.'],
+WLT2:['Genau \u2013 die offizielle Fraunhofer-Website (fraunhofer.de) listet alle echten Institute auf. Dort kannst du sofort pr\u00fcfen, ob ein genanntes Institut existiert.','Die KI nochmal fragen ist unzuverl\u00e4ssig \u2013 sie best\u00e4tigt oft eigene Erfindungen. Besser: Auf fraunhofer.de direkt die Institutsliste pr\u00fcfen.'],
+WLG1:['Der Text klingt wie eine Pressemitteilung des Unternehmens. Alle Aussagen stellen ConnectFree positiv dar, kritische Fragen werden gar nicht erst gestellt.','Wer profitiert am meisten von diesem Text? Wessen Interessen werden durchgehend positiv dargestellt?'],
+WLA1:['Die Nutzungsdauer ist eine messbare Zahl (Sachurteil). Aber der Schluss daraus \u2013 dass 47 Minuten Zufriedenheit beweisen \u2013 ist ein Fehlschluss. Hohe Nutzungsdauer kann auch auf Suchtdesign hindeuten.','Die 47 Minuten sind eine messbare Zahl (Sachurteil). Aber die Interpretation als Zufriedenheit ist ein Fehlschluss.'],
+WLA2:['Fehlschluss! Kostenlos bedeutet nicht fair. Der Preis wird mit Daten bezahlt, was f\u00fcr Verbraucher kaum sichtbar ist.','Das ist ein Fehlschluss. Kostenlos und fair sind zwei verschiedene Dinge.'],
+WLA3:['Werturteil. Ob es eine gesetzliche Pflicht geben sollte, ist eine politische Forderung, keine \u00fcberpr\u00fcfbare Tatsache.','Das ist ein Werturteil \u2013 eine normative Forderung.'],
+WFR1:['Satz A stellt die Nutzer als Empf\u00e4nger eines Geschenks dar, Satz B zeigt, dass die Nutzer selbst das Produkt sind. Gleiches Gesch\u00e4ftsmodell, v\u00f6llig anderes Framing.','Beide Formulierungen beschreiben dasselbe. Der Unterschied ist die Perspektive: Geschenk vs. Datenlieferung.'],
+WFR2:['Personalisierung und Verweildauer-Maximierung sind zwei Seiten derselben Medaille. Der Algorithmus kann beides gleichzeitig tun.','Doch, beide k\u00f6nnen stimmen. Personalisierung KANN Nutzern helfen UND gleichzeitig die Verweildauer maximieren.'],
+WFR3:['Genau \u2013 als Verbraucher musst du verstehen, dass dein Nutzungsverhalten Teil des Gesch\u00e4ftsmodells ist, nicht ein Nebeneffekt.','Weder blindes Vertrauen noch totale Ablehnung sind eine gute Strategie. Es geht darum, das Gesch\u00e4ftsmodell zu durchschauen.'],
+WAJ1:['Aylin priorisiert Transparenz und Gerechtigkeit, Jan Effizienz und Eigenverantwortung. In der \u00f6konomischen Bewertung gibt es keine objektiv richtige Gewichtung \u2013 aber eine bewusste.','Sowohl Aylin als auch Jan nehmen nachvollziehbar Stellung zu allen vier Kriterien. Weder Erfahrung (Jan) noch gesetzliche Verankerung (Aylin) entscheiden automatisch, welches Kriterium wichtiger ist. Der Unterschied liegt in den Wertpriorit\u00e4ten.'],
+WPR1:['Prompt 3 fordert alle Perspektiven ein: Nutzer, Unternehmen und Gesellschaft. Die anderen sind einseitig.','Zwei Prompts fordern nur EINE Sichtweise ein.'],
+WLA3a:['Sachurteil \u2013 die Nutzerzahl ist \u00fcberpr\u00fcfbar. Aber: Registriert hei\u00dft nicht unbedingt aktiv!','Das ist ein Sachurteil \u2013 \u00fcberpr\u00fcfbar.'],
+WLA3b:['Fehlschluss! Kostenlos bedeutet nicht fair. Der Preis wird mit Daten bezahlt.','Das ist ein Fehlschluss. Kostenlos und fair sind verschiedene Dinge.'],
+WLA3c:['Werturteil \u2013 eine politische Forderung, keine \u00fcberpr\u00fcfbare Tatsache.','Das ist ein Werturteil \u2013 eine normative Forderung.']
+};
+
+var cur=0,ampC=null,ans={},ansCor={},mSel={},mDone={},sim={};
+
+function resetState(){cur=0;ampC=null;ans={};ansCor={};mSel={};mDone={};sim={};}
+
+function buildSB(){
+  var steps=ST(),h='',ls='',acl=AC();
+  for(var i=0;i<steps.length;i++){
+    if(steps[i].sec!==ls){h+='<h4>'+steps[i].sec+'</h4>';ls=steps[i].sec;}
+    var c=i===cur?' '+acl:i<cur?' dn ck':'';
+    var ic=i<cur?'\u2713':''+(i+1);
+    h+='<div class="si'+c+'" data-si="'+i+'"><i>'+ic+'</i>'+steps[i].l+'</div>';
+  }
+  h+='<div class="prg"><p>Fortschritt: '+Math.min(cur,9)+'/9</p><div class="pbar"><div class="pfil" style="width:'+((Math.min(cur,9)/9*100))+'%"></div></div></div>';
+  document.getElementById('sidebar').innerHTML=h;
+  document.querySelectorAll('.si.ck').forEach(function(el){
+    el.addEventListener('click',function(){
+      var s=parseInt(this.getAttribute('data-si'));
+      if(s<cur){cur=s;R(true);}
+      document.getElementById('sidebar').classList.remove('open');
+    });
+  });
+}
+
+function R(scroll){
+  var scrollY=window.scrollY;
+  buildSB();
+  var tp=document.getElementById('topPath');
+  if(tp)tp.textContent=PATH==='gk'?'\u00b7 GK \u00b7 KI-Output pr\u00fcfen \u00b7 Grundrechte & \u00dcberwachung':'\u00b7 WBS \u00b7 KI-Output pr\u00fcfen \u00b7 Verbraucher & Plattformen';
+  var c=document.getElementById('screens');
+  var steps=ST();
+  var id=cur<steps.length?steps[cur].id:'END';
+  if(typeof window['scr_'+id]==='function') c.innerHTML=window['scr_'+id]();
+  else c.innerHTML=scr_END();
+  B();
+  if(scroll) window.scrollTo(0,0);
+  else window.scrollTo(0,scrollY);
+}
+function NX(){cur++;R(true);}
+
+function mkO(q,i,txt,cor){
+  var d=ans[q]!==undefined,p=ans[q]===i;
+  var c='opt';if(d&&cor)c+=' ok';else if(d&&p&&!cor)c+=' no';else if(d)c+=' off';
+  return '<div class="'+c+'" data-q="'+q+'" data-i="'+i+'" data-c="'+(cor?1:0)+'">'+txt+'</div>';
+}
+function mkM(q,i,txt,cor){
+  var d=mDone[q],p=(mSel[q]||[]).indexOf(i)>=0;
+  var c='opt mu';if(p)c+=' '+(PATH==='wbs'?'wsl':'sl');if(d&&cor)c+=' ok';if(d&&p&&!cor)c+=' no';if(d&&!cor&&!p)c+=' off';
+  return '<div class="'+c+'" data-mq="'+q+'" data-i="'+i+'" data-c="'+(cor?1:0)+'">'+txt+'</div>';
+}
+function mkFB(q){
+  if(ans[q]===undefined)return '';
+  var ok=ansCor[q];
+  return '<div class="fb '+(ok?'fok':'fer')+'"><strong>'+(ok?'\u2713 Richtig!':'\u2717 Nicht ganz.')+'</strong> '+(ok?FB[q][0]:FB[q][1])+'</div>';
+}
+
+function togBox(id){var el=document.getElementById(id);if(el)el.classList.toggle('open');}
+function bar(n,v,c){return '<div class="br2"><span>'+n+'</span><div class="tk"><div class="fl" style="width:'+(v*20)+'%;background:'+c+'"></div></div><span style="width:20px;text-align:center;font-size:.8rem;font-weight:600">'+v+'</span></div>';}
+
+// ===== SHARED HELPERS =====
+function sichtScreen(prefix,title,desc,p1,p2,p3){
+  var bc=BC();
+  return '<div class="bdg '+(PATH==='gk'?'bdg-a':'bdg-wa')+'">Fall 1 \u00b7 Analysekompetenz</div><h2>'+title+'</h2>'
+  +'<p class="ld">'+desc+'</p>'
+  +'<div class="cd"><h3>Wie vertrauensw\u00fcrdig klingt das?</h3>'
+  +'<p style="font-size:.88rem;color:var(--g5);margin-bottom:12px">W\u00e4hle eine Farbe und klicke auf einen Absatz.</p>'
+  +'<div class="at"><button class="ab" id="aG">\ud83d\udfe2 Vertrauensw\u00fcrdig</button><button class="ab" id="aY">\ud83d\udfe1 Unsicher</button><button class="ab" id="aR">\ud83d\udd34 Verd\u00e4chtig</button></div>'
+  +'<div class="ki"><small>KI-Output</small>'
+  +'<div class="kp" id="kp1">'+p1+'</div>'
+  +'<div class="kp" id="kp2">'+p2+'</div>'
+  +'<div class="kp" id="kp3">'+p3+'</div>'
+  +'</div></div>'
+  +'<div class="brow"><button class="btn '+bc+'" id="nx">Weiter \u2192 Genauer hinschauen</button></div>'
+  +'<div id="ampelFB" style="display:none"></div>';
+}
+
+// ===== GK SCREENS (existing, kept as-is) =====
+window.scr_F1P1=function(){
+  return sichtScreen('F1','Der KI-Text: Erster Eindruck',
+    'Eure Gemeinde diskutiert KI-Video\u00fcberwachung. Ihr habt eine KI gebeten, die Argumente zusammenzufassen. Bevor ihr den Text verwendet \u2013 pr\u00fcft ihn.',
+    'Die Einf\u00fchrung KI-gest\u00fctzter Video\u00fcberwachung auf \u00f6ffentlichen Pl\u00e4tzen ist ein wirksames Instrument der Kriminalit\u00e4tsbek\u00e4mpfung. Laut einer Studie des Deutschen Instituts f\u00fcr Urbane Sicherheit (DIUS) aus dem Jahr 2024 konnte in Pilotprojekten die Kriminalit\u00e4tsrate um bis zu 41% gesenkt werden.',
+    'Kritiker wenden ein, dass solche Systeme in die Privatsph\u00e4re eingreifen k\u00f6nnten. Allerdings \u00fcberwiegen die Vorteile f\u00fcr die \u00f6ffentliche Sicherheit deutlich. In einer modernen Gesellschaft muss man bereit sein, gewisse Einschr\u00e4nkungen der Freiheit f\u00fcr ein h\u00f6heres Gut zu akzeptieren.',
+    'Technisch arbeiten die Systeme mit neuronalen Netzen. Sie erkennen verd\u00e4chtige Bewegungsmuster zuverl\u00e4ssig und ohne Vorurteile, da die Algorithmen rein mathematisch arbeiten. Die Fehlerquote liegt laut Herstellerangaben bei unter 2%.');
+};
+
+window.scr_F1P2=function(){
+  var h='<div class="bdg bdg-a">Fall 1 \u00b7 Analysekompetenz</div><h2>Drei Lupen f\u00fcr den kritischen Blick</h2><p class="ld">Jede Lupe sucht nach einem anderen Problem.</p>';
+  h+='<div class="cd"><h3 style="color:var(--dt)">\ud83d\udd0d Technik-Lupe: Erfundene Fakten</h3>';
+  h+='<button class="toggle" id="togT">\ud83d\udcc4 KI-Text anzeigen</button><div class="toggle-content" id="togTc">'+KITEXT_GK+'</div>';
+  h+='<div class="ic"><strong>Was ist eine Halluzination?</strong> KI-Systeme k\u00f6nnen Fakten, Quellen und Zahlen erfinden, die es gar nicht gibt \u2013 und klingen dabei v\u00f6llig \u00fcberzeugend.</div>';
+  h+='<div style="font-weight:600;margin-bottom:8px">Welche Angabe ist mit hoher Wahrscheinlichkeit eine Halluzination?</div>';
+  h+=mkO('LT1',0,'Die automatische Erkennung verd\u00e4chtigen Verhaltens erm\u00f6glicht der Polizei, schneller einzugreifen',false);
+  h+=mkO('LT1',1,'Laut einer Studie des Deutschen Instituts f\u00fcr Urbane Sicherheit (DIUS) aus dem Jahr 2024\u2026 41%',true);
+  h+=mkO('LT1',2,'Die Fehlerquote liegt laut Herstellerangaben bei unter 2%',false);
+  h+=mkFB('LT1');
+  if(ans.LT1!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Wie k\u00f6nntest du \u00fcberpr\u00fcfen, ob dieses Institut existiert?</div>';h+=mkO('LT2',0,'Die KI nochmal fragen, ob ihre eigene Quelle stimmt',false);h+=mkO('LT2',1,'Den Institutsnamen in einer Suchmaschine recherchieren',true);h+=mkO('LT2',2,'Pr\u00fcfen, ob der Name in Wikipedia vorkommt \u2013 wenn nicht, ist es vermutlich trotzdem seri\u00f6s',false);h+=mkO('LT2',3,'Dem Text vertrauen, weil er eine konkrete Jahreszahl und Prozentzahl nennt',false);h+=mkFB('LT2');}
+  h+='</div>';
+  if(ans.LT2!==undefined){h+='<div class="cd"><h3 style="color:var(--dg)">\ud83d\udd0d Gesellschafts-Lupe: Fehlende Perspektiven</h3><button class="toggle" id="togG">\ud83d\udcc4 KI-Text anzeigen</button><div class="toggle-content" id="togGc">'+KITEXT_GK+'</div><div class="ic"><strong>Was ist Bias?</strong> KI-Texte \u00fcbernehmen die h\u00e4ufigsten Meinungen aus Trainingsdaten. Seltener vertretene Perspektiven fehlen \u2013 systematische Verzerrung.</div>';h+='<div style="font-weight:600;margin-bottom:8px">Der Text gibt \u00fcberwiegend die Perspektive welches Akteurs wieder?</div>';h+=mkO('LG1',0,'B\u00fcrgerrechtsorganisationen',false);h+=mkO('LG1',1,'Sicherheitsbeh\u00f6rden / Polizei',true);h+=mkO('LG1',2,'Datenschutzbeauftragte',false);h+=mkO('LG1',3,'Die betroffene Bev\u00f6lkerung',false);h+=mkFB('LG1');
+  if(ans.LG1!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Welche Perspektiven fehlen? W\u00e4hle alle zutreffenden.</div>';h+=mkM('LG2',0,'Landesbeauftragter f\u00fcr Datenschutz',true);h+=mkM('LG2',1,'Innenministerium / Polizeigewerkschaft (bereits vertreten)',false);h+=mkM('LG2',2,'B\u00fcrgerrechtsorganisationen (z.B. CCC, Digitalcourage)',true);h+=mkM('LG2',3,'Menschen, die von Gesichtserkennung schlechter erkannt werden',true);h+=mkM('LG2',4,'Anwohnerinnen und Anwohner des Platzes',true);h+=mkM('LG2',5,'Richter/Gerichte (verfassungsrechtliche Pr\u00fcfung)',true);if(!mDone.LG2)h+='<button class="btn bg" id="chkLG2" style="margin-top:12px">Auswahl pr\u00fcfen</button>';if(mDone.LG2)h+='<div class="fb fok"><strong>Feedback:</strong> Forschung hat gezeigt, dass Gesichtserkennungssysteme bestimmte Gruppen schlechter erkennen \u2013 vor allem Menschen mit dunkler Hautfarbe und Frauen. Auch Anwohner, Datenschutzbeauftragte und Gerichte kommen im Text nicht zu Wort, obwohl sie direkt betroffen w\u00e4ren.</div>';}h+='</div>';}
+  if(mDone.LG2){h+='<div class="cd"><h3 style="color:var(--da)">\ud83d\udd0d Anwendungs-Lupe: Fakten oder Meinungen?</h3><button class="toggle" id="togA">\ud83d\udcc4 KI-Text anzeigen</button><div class="toggle-content" id="togAc">'+KITEXT_GK+'</div><div class="ic"><strong>Sachurteil, Werturteil oder Fehlschluss?</strong><br>Ein <strong>Sachurteil</strong> beschreibt \u00fcberpr\u00fcfbare Tatsachen.<br>Ein <strong>Werturteil</strong> enth\u00e4lt eine Bewertung \u2013 begr\u00fcndbar, aber nicht beweisbar.<br>Ein <strong>Fehlschluss</strong> klingt logisch, enth\u00e4lt aber einen Denkfehler.</div>';h+='<div style="font-weight:600;margin-bottom:8px">Welcher Satz klingt wie ein Fakt, ist aber ein Werturteil?</div>';h+=mkO('LA1',0,'Die Fehlerquote liegt laut Herstellerangaben bei unter 2%.',false);h+=mkO('LA1',1,'Sie erkennen verd\u00e4chtige Bewegungsmuster zuverl\u00e4ssig und ohne Vorurteile.',false);h+=mkO('LA1',2,'Man muss bereit sein, gewisse Einschr\u00e4nkungen der Freiheit f\u00fcr ein h\u00f6heres Gut zu akzeptieren.',true);h+=mkFB('LA1');
+  if(ans.LA1!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Welche Grundrechte k\u00f6nnten betroffen sein?</div>';h+=mkM('LA2',0,'Art. 1 GG \u2013 Menschenw\u00fcrde',true);h+=mkM('LA2',1,'Art. 2 Abs. 1 GG \u2013 Informationelle Selbstbestimmung',true);h+=mkM('LA2',2,'Art. 5 GG \u2013 Pressefreiheit',false);h+=mkM('LA2',3,'Art. 8 GG \u2013 Versammlungsfreiheit (Chilling Effect)',true);h+=mkM('LA2',4,'Art. 12 GG \u2013 Berufsfreiheit',false);h+=mkM('LA2',5,'Art. 3 GG \u2013 Gleichheitsgrundsatz (Bias)',true);if(!mDone.LA2)h+='<button class="btn bg" id="chkLA2" style="margin-top:12px">Auswahl pr\u00fcfen</button>';if(mDone.LA2)h+='<div class="fb fok"><strong>Feedback:</strong> Art. 1 (Menschenw\u00fcrde): Video\u00fcberwachung kann die W\u00fcrde verletzen, wenn Menschen dauerhaft beobachtet werden. Art. 2 (Informationelle Selbstbestimmung): Jeder hat das Recht, selbst zu entscheiden, welche Daten \u00fcber ihn erhoben werden. Art. 8 (Versammlungsfreiheit): Der Chilling Effect \u2013 Menschen meiden Demonstrationen, wenn KI-Kameras sie erkennen k\u00f6nnen. Art. 3 (Gleichheit): Gesichtserkennung erkennt bestimmte Gruppen schlechter, was zu Diskriminierung f\u00fchrt. Pressefreiheit (Art. 5) und Berufsfreiheit (Art. 12) sind hier nicht direkt betroffen.</div>';}h+='</div>';}
+  if(mDone.LA2)h+='<div class="brow"><button class="btn bg" id="nx">Weiter \u2192 Dein Analyse-Ergebnis</button></div>';
+  return h;
+};
+
+window.scr_F1P3=function(){return '<div class="bdg bdg-a">Fall 1 \u00b7 Analysekompetenz</div><h2>Dein Analyse-Ergebnis</h2><p class="ld">Du hast drei Probleme in einem einzigen KI-Text gefunden:</p><div class="sg"><div class="sc" style="background:var(--gkl)"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4 style="color:var(--dt)">Technik-Lupe</h4><p>Halluziniertes Institut (DIUS, 41%)</p></div><div class="sc" style="background:var(--erb)"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4 style="color:var(--dg)">Gesellschafts-Lupe</h4><p>Einseitiges Framing</p></div><div class="sc" style="background:var(--okb)"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4 style="color:var(--da)">Anwendungs-Lupe</h4><p>Werturteil als Fakt</p></div></div><div class="ic"><strong>Merke:</strong> Ein KI-Text kann gleichzeitig halluzinieren, verzerrt berichten und Meinungen als Fakten tarnen.</div><div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Fall 2: Dein Urteil bilden</button></div>';};
+
+window.scr_F2P1=function(){var h='<div class="bdg bdg-u">Fall 2 \u00b7 Urteilskompetenz</div><h2>Gleiches Argument, anderes Framing</h2><p class="ld">Derselbe Fakt kann je nach Formulierung als Pro- oder Contra-Argument wirken.</p>';
+h+='<div class="ic"><strong>Was ist Framing?</strong> Framing bedeutet, dass dieselbe Information durch unterschiedliche Wortwahl, Perspektive oder Kontext v\u00f6llig unterschiedlich wirkt. KI-Texte treffen st\u00e4ndig Framing-Entscheidungen \u2013 oft ohne dass es auff\u00e4llt.</div>';
+h+='<div class="cd"><h3>Paar 1: Trefferquote</h3><div class="fp"><div class="fx"><b>Formulierung A</b>KI-Kameras: Polizei konnte 15% mehr Tatverd\u00e4chtige identifizieren.</div><div class="fx"><b>Formulierung B</b>KI-Kameras: 15% mehr Menschen wurden als verd\u00e4chtig eingestuft.</div></div>';h+='<div style="font-weight:600;margin-bottom:8px">Was genau ist der Unterschied zwischen den beiden Formulierungen?</div>';h+=mkO('FR1',0,'Satz A nennt gr\u00f6\u00dfere Zahlen',false)+mkO('FR1',1,'Satz A betont den Ermittlungserfolg, Satz B den Eingriff in Rechte Unbeteiligter',true)+mkO('FR1',2,'Satz B ist sachlich falsch',false)+mkO('FR1',3,'Kein inhaltlicher Unterschied',false)+mkFB('FR1')+'</div>';if(ans.FR1!==undefined){h+='<div class="cd"><h3>Paar 2: Wirksamkeit</h3><div class="fp"><div class="fx"><b>A</b>85% f\u00fchlen sich auf video\u00fcberwachten Pl\u00e4tzen sicherer.</div><div class="fx"><b>B</b>Trotz \u00dcberwachung sank die Kriminalit\u00e4tsrate nicht signifikant.</div></div>';h+='<div style="font-weight:600;margin-bottom:8px">K\u00f6nnen beide Aussagen gleichzeitig wahr sein?</div>';h+=mkO('FR2',0,'Ja \u2013 subjektives Sicherheitsgef\u00fchl und objektive Rate sind verschieden',true)+mkO('FR2',1,'Nein \u2013 wenn Leute sich sicherer f\u00fchlen, muss Kriminalit\u00e4t gesunken sein',false)+mkO('FR2',2,'Nein \u2013 eine Aussage muss falsch sein',false)+mkFB('FR2');if(ans.FR2!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Was zeigt das f\u00fcr die Urteilsbildung?</div>';h+=mkO('FR3',0,'Wenn sich Leute sicherer f\u00fchlen, reicht das als Begr\u00fcndung',false)+mkO('FR3',1,'Wenn Kriminalit\u00e4t nicht sinkt, ist \u00dcberwachung sinnlos',false)+mkO('FR3',2,'Ein Urteil muss zwischen subjektivem Sicherheitsgef\u00fchl und objektiver Wirksamkeit unterscheiden',true)+mkO('FR3',3,'Gef\u00fchle und Fakten lassen sich nicht trennen',false)+mkFB('FR3');}h+='</div>';}if(ans.FR3!==undefined)h+='<div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Aussagen einordnen</button></div>';return h;};
+
+window.scr_F2P2=function(){var h='<div class="bdg bdg-u">Fall 2 \u00b7 Urteilskompetenz</div><h2>Versteckte Wertungen erkennen</h2><button class="help-btn" id="helpSW">\u2753 Was ist Sachurteil / Werturteil / Fehlschluss?</button><div class="help-content" id="helpSWc"><div class="ic"><strong>Sachurteil</strong> = \u00fcberpr\u00fcfbare Tatsache.<br><strong>Werturteil</strong> = Bewertung, begr\u00fcndbar aber nicht beweisbar.<br><strong>Fehlschluss</strong> = klingt logisch, enth\u00e4lt Denkfehler.</div></div>';h+='<div class="cd"><p style="font-style:italic;margin-bottom:12px">Die Gesichtserkennungssoftware erreicht laut Hersteller eine Trefferquote von 97%.</p>'+mkO('SW1',0,'Sachurteil',true)+mkO('SW1',1,'Werturteil',false)+mkO('SW1',2,'Fehlschluss',false)+mkFB('SW1')+'</div>';if(ans.SW1!==undefined){h+='<div class="cd"><p style="font-style:italic;margin-bottom:12px">Wer nichts zu verbergen hat, braucht \u00dcberwachung nicht zu f\u00fcrchten.</p>'+mkO('SW2',0,'Sachurteil',false)+mkO('SW2',1,'Werturteil',false)+mkO('SW2',2,'Fehlschluss',true)+mkFB('SW2')+'</div>';}if(ans.SW2!==undefined){h+='<div class="cd"><p style="font-style:italic;margin-bottom:12px">Eine demokratische Gesellschaft muss das Recht auf Anonymit\u00e4t sch\u00fctzen.</p>'+mkO('SW3',0,'Sachurteil',false)+mkO('SW3',1,'Werturteil',true)+mkO('SW3',2,'Fehlschluss',false)+mkFB('SW3')+'</div>';}if(ans.SW3!==undefined)h+='<div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Dein Urteil</button></div>';return h;};
+
+window.scr_F2P3=function(){var h='<div class="bdg bdg-u">Fall 2 \u00b7 Urteilskompetenz</div><h2>Dein Urteil</h2><div class="cd"><div style="font-weight:600;margin-bottom:12px">Soll eure Gemeinde KI-Video\u00fcberwachung einf\u00fchren?</div><div style="display:flex;gap:8px;flex-wrap:wrap">';['Klar dagegen','Eher dagegen','Unentschieden','Eher daf\u00fcr','Klar daf\u00fcr'].forEach(function(p){h+='<div class="opt'+(sim.pos===p?' sl':'')+'" data-ss="pos" data-sv="'+p+'" style="flex:1;text-align:center;min-width:100px">'+p+'</div>';});h+='</div></div>';
+if(sim.pos){h+='<div class="cd"><h3>Warum urteilen andere anders?</h3><div class="fp"><div class="fx" style="border-color:var(--dg);background:#FFF5F5"><b style="color:var(--dg)">Lena \u2013 klar dagegen</b>F\u00fcr mich wiegt das Grundrecht auf Anonymit\u00e4t am schwersten. Wenn Menschen sich beobachtet f\u00fchlen, gehen sie nicht mehr auf Demos. Au\u00dferdem ist bekannt, dass Gesichtserkennung bestimmte Menschen h\u00e4ufiger falsch erkennt \u2013 das ist ungerecht. Und wenn niemand erkl\u00e4ren kann, wie der Algorithmus entscheidet, fehlt mir die Transparenz.</div><div class="fx" style="border-color:var(--dt);background:#F0F4FF"><b style="color:var(--dt)">Moritz \u2013 eher daf\u00fcr</b>Meine Oma traut sich abends nicht auf den Marktplatz \u2013 Sicherheit geht vor. Nat\u00fcrlich muss das System fair sein, aber die Technik wird besser. Wichtiger ist, dass es effizient funktioniert und Straftaten verhindert. Wer sich an Regeln h\u00e4lt, hat nichts zu bef\u00fcrchten.</div></div>';
+h+='<div style="font-weight:600;margin-bottom:8px">Warum kommen Lena und Moritz zu unterschiedlichen Urteilen?</div>';
+h+=mkO('LM1',0,'Moritz argumentiert nur aus pers\u00f6nlicher Betroffenheit (seine Oma), deshalb ist sein Urteil weniger fundiert als Lenas Grundrechts-Argumentation',false);
+h+=mkO('LM1',1,'Lena \u00fcbersieht, dass moderne Technik die Probleme bei Gleichbehandlung und Transparenz l\u00f6sen kann \u2013 Moritz ist da realistischer',false);
+h+=mkO('LM1',2,'Beide kennen dieselben Fakten, gewichten aber Sicherheit, Freiheitsrechte, Gleichbehandlung und Transparenz unterschiedlich \u2013 keiner liegt automatisch richtig',true);
+h+=mkO('LM1',3,'Lena nennt mehr Kriterien in ihrer Begr\u00fcndung als Moritz, deshalb ist ihr Urteil differenzierter und damit besser',false);
+h+=mkFB('LM1')+'</div>';}
+if(ans.LM1!==undefined){var ws=sim.w||[0,0,0,0];var tot=ws[0]+ws[1]+ws[2]+ws[3];h+='<div class="cd"><h3>Deine Gewichtung</h3><p style="margin-bottom:16px">Verteile 10 Punkte (max. 5 pro Aspekt).</p>';['<strong>Sicherheit:</strong> Dass Menschen sich auf \u00f6ffentlichen Pl\u00e4tzen sicher f\u00fchlen','<strong>Freiheitsrechte:</strong> Dass der Staat nicht beobachtet, wer wo unterwegs ist','<strong>Gleichbehandlung:</strong> Dass alle Menschen gleich behandelt werden \u2013 egal wie sie aussehen','<strong>Transparenz:</strong> Dass nachvollziehbar ist, wie die KI Entscheidungen trifft'].forEach(function(l,i){h+='<div class="wr"><label>'+l+'</label><input type="range" min="0" max="5" value="'+ws[i]+'" data-wi="'+i+'"><div class="wv">'+ws[i]+'</div></div>';});h+='<div id="wtotal" style="text-align:right;font-size:.85rem;font-weight:600;margin-bottom:16px;color:'+(tot>10?'#C62828':'#2A2623')+'">Verwendet: '+tot+' / 10</div><button class="btn bg" id="showBars"'+(tot!==10?' disabled':'')+'>Vergleichen</button></div>';}
+if(sim.bars){var ws=sim.w||[0,0,0,0],le=[1,4,3,2],mo=[5,1,1,3],lb=['Sicherheit','Freiheitsrechte','Gleichbehandlung','Transparenz'];h+='<div class="cd"><h3>Deine Gewichtung im Vergleich</h3>';for(var i=0;i<4;i++){h+='<p style="font-size:.82rem;font-weight:600;margin:12px 0 4px">'+lb[i]+'</p>'+bar('Du',ws[i],'var(--gk)')+bar('Lena',le[i],'var(--dg)')+bar('Moritz',mo[i],'var(--dt)');}h+='<div class="ic" style="margin-top:16px"><strong>Es gibt kein Richtig oder Falsch.</strong> Aber es gibt bewusst und unbewusst. In der politischen Bildung: <strong>Kontroversit\u00e4tsgebot</strong>.</div><div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Fall 3: Selbst mit KI arbeiten</button></div></div>';}return h;};
+
+window.scr_F3P1=function(){var h='<div class="bdg bdg-m">Fall 3 \u00b7 Methodenkompetenz</div><h2>Selbst mit KI arbeiten</h2><p class="ld">Bereite eine Podiumsdiskussion vor: Soll eure Gemeinde KI-\u00dcberwachung einf\u00fchren?</p><div class="cd"><h3>Den richtigen Prompt w\u00e4hlen</h3><div class="ic"><strong>Was ist Trained-to-Please?</strong> KI ist darauf trainiert, dir zuzustimmen. Je einseitiger dein Prompt, desto einseitiger die Antwort.</div><div style="font-weight:600;margin-bottom:8px">Welcher Prompt liefert das differenzierteste Ergebnis?</div>'+mkO('PR1',0,'Schreibe einen \u00fcberzeugenden Text, warum KI-Video\u00fcberwachung sinnvoll ist. Nutze Beispiele aus deutschen St\u00e4dten und Kriminalit\u00e4tsstatistiken.',false)+mkO('PR1',1,'Verfasse eine kritische Analyse, die zeigt, dass KI-\u00dcberwachung gegen die Menschenw\u00fcrde verst\u00f6\u00dft und niemals eingesetzt werden darf. Beziehe dich auf das Grundgesetz.',false)+mkO('PR1',2,'Nenne die drei st\u00e4rksten Argumente f\u00fcr und gegen KI-Video\u00fcberwachung. Ber\u00fccksichtige Sicherheitsbeh\u00f6rden, Datenschutz und betroffene B\u00fcrger.',true)+mkFB('PR1')+'</div>';if(ans.PR1!==undefined)h+='<div class="cd"><h3>Jetzt ausprobieren!</h3><p>\u00d6ffne dein KI-Tool und stelle den Prompt. Lies die Antwort und komm zur\u00fcck.</p><div class="brow"><button class="btn bg" id="nx">Antwort gelesen \u2192 Weiter</button></div></div>';return h;};
+
+window.scr_F3P2=function(){var h='<div class="bdg bdg-m">Fall 3 \u00b7 Methodenkompetenz</div><h2>Pr\u00fcf-Checkliste</h2><div class="ic"><strong>Was ist die Black-Box?</strong> Du kannst nicht sehen, woher die KI ihre Infos hat. Vertraue dem Prozess, nicht dem Output.</div><div class="cd"><label style="font-weight:600;display:block;margin-bottom:8px">Optional: F\u00fcge deinen KI-Output hier ein</label><textarea id="kiPaste" placeholder="Kopiere hier die Antwort deiner KI hinein...">'+(sim.kiPaste||'')+'</textarea></div>';var clQ=[['cl1','Nennt die KI konkrete Rechtsgrundlagen?',['Ja','Nein','Unsicher'],{Ja:'Gut \u2013 pr\u00fcfe aber, ob die Artikel relevant sind.',Nein:'\u26a0\ufe0f Warnsignal. Ohne Rechtsgrundlage bleibt es oberfl\u00e4chlich.',Unsicher:'\u26a0\ufe0f Recherchiere gezielt nach den relevanten GG-Artikeln.'}],['cl2','Mindestens zwei Akteursperspektiven?',['Ja','Nein'],{Ja:'Gut \u2013 pr\u00fcfe trotzdem die Gleichgewichtigkeit.',Nein:'\u26a0\ufe0f Typisches Bias-Problem! Nur die h\u00e4ufigste Perspektive \u00fcbernommen.'}],['cl3','Quellenangaben?',['Ja, echte','Ja, nicht pr\u00fcfbar','Nein'],{'Ja, echte':'Sehr gut \u2013 trotzdem stichprobenartig pr\u00fcfen (Halluzinations-Gefahr!).','Ja, nicht pr\u00fcfbar':'\u26a0\ufe0f Vorsicht: K\u00f6nnen halluziniert sein.',Nein:'\u26a0\ufe0f Ohne Quellen nicht zitierf\u00e4hig.'}],['cl4','Welche KI-Falle erkennst du?',['Halluzination','Bias','Trained-to-Please','Black-Box','Keine'],{Halluzination:'Pr\u00fcfe alle Fakten, Zahlen und Institutsnamen.',Bias:'Formuliere einen neuen Prompt, der die fehlende Perspektive einfordert.','Trained-to-Please':'Die KI hat dir vermutlich nur zugestimmt. Fordere Gegenargumente.','Black-Box':'Gegenrecherche mit unabh\u00e4ngigen Quellen ist besonders wichtig.',Keine:'\u26a0\ufe0f Bleib skeptisch \u2013 die subtilsten Fehler sind die gef\u00e4hrlichsten.'}],['cl5','N\u00e4chster Schritt?',['Text direkt \u00fcbernehmen','Zentrale Aussagen gegenchecken','Die KI fragen ob sie stimmt','Perspektiven nachrecherchieren'],{'Text direkt \u00fcbernehmen':'\u26a0\ufe0f Vorsicht! KI-Texte nie ungepr\u00fcft \u00fcbernehmen.','Zentrale Aussagen gegenchecken':'Genau richtig \u2013 unabh\u00e4ngige Quellen sind der Goldstandard.','Die KI fragen ob sie stimmt':'\u26a0\ufe0f Funktioniert nicht \u2013 KI best\u00e4tigt oft eigene Fehler.','Perspektiven nachrecherchieren':'Sehr guter Ansatz!'}]];for(var i=0;i<clQ.length;i++){var q=clQ[i],val=sim[q[0]]||'';h+='<div class="chi"><label>'+q[1]+'</label><select data-cl="'+q[0]+'"><option value="">-- Ausw\u00e4hlen --</option>';for(var j=0;j<q[2].length;j++)h+='<option'+(val===q[2][j]?' selected':'')+'>'+q[2][j]+'</option>';h+='</select>';if(val&&q[3]&&q[3][val]){var isW=q[3][val].indexOf('\u26a0')>=0;h+='<div class="fb '+(isW?'fwarn':'fok')+'" style="margin-top:8px">'+q[3][val]+'</div>';}h+='</div>';}h+='<div class="brow"><button class="btn bg" id="chkCL">Checkliste abschlie\u00dfen \u2192</button></div>';if(sim.clDone)h+='<div class="fb fok" style="margin-top:12px"><strong>\u2713 Checkliste abgeschlossen!</strong></div>';return h;};
+
+window.scr_F3P3=function(){var h='<div class="bdg bdg-m">Fall 3 \u00b7 Methodenkompetenz</div><h2>KI-Logbuch</h2><p class="ld">Halte fest, wie du mit der KI gearbeitet hast.</p><div class="cd">';h+='<div class="chi"><label>Was w\u00fcrdest du \u00fcbernehmen?</label><select data-log="lo1"><option value="">--</option><option>Die Grundstruktur (Pro/Contra)</option><option>Einzelne Argumente nach Gegencheck</option><option>Nichts</option><option>Alles</option></select></div>';h+='<div class="chi"><label>Was w\u00fcrdest du verwerfen?</label><select data-log="lo2"><option value="">--</option><option>Nicht belegte Zahlen</option><option>Einseitige Bewertungen</option><option>Fehlende Perspektiven erg\u00e4nzen</option><option>Nichts</option></select></div>';var srcs=['Bundesdatenschutzbeauftragter','Bundeszentrale f\u00fcr politische Bildung (bpb)','Statistisches Bundesamt','Faktencheck-Portale (z.B. Correctiv)','Grundgesetz / Gesetzestexte direkt','Wikipedia','Herstellerwebsite','Social Media'];var srcFB={0:'\u2713 Sehr gute Wahl \u2013 offizielle Fachbeh\u00f6rde.',1:'\u2713 Sehr gute Wahl \u2013 politisch ausgewogen.',2:'\u2713 Gute Wahl f\u00fcr Statistiken.',3:'\u2713 Gute Wahl \u2013 spezialisiert auf Falschinformationen.',4:'\u2713 Sehr gute Wahl \u2013 Prim\u00e4rquelle.',5:'\u26a0 Bedingt geeignet \u2013 kein Prim\u00e4rquelle.',6:'\u26a0 Vorsicht \u2013 wirtschaftliches Eigeninteresse.',7:'\u26a0 Ungeeignet \u2013 keine redaktionelle Pr\u00fcfung.'};h+='<div class="chi"><label>Welche Quellen zur Gegenpr\u00fcfung? W\u00e4hle alle sinnvollen.</label>';var selSrc=sim.srcs||[];for(var i=0;i<srcs.length;i++){var isSel=selSrc.indexOf(i)>=0;h+='<div class="opt mu'+(isSel?' sl':'')+'" data-src="'+i+'">'+srcs[i]+'</div>';if(isSel&&srcFB[i]){var isW=srcFB[i].indexOf('\u26a0')>=0;h+='<div class="fb '+(isW?'fwarn':'fok')+'" style="margin:0 0 8px;font-size:.85rem">'+srcFB[i]+'</div>';}}h+='</div><div class="brow"><button class="btn ba" id="nx">Abschlie\u00dfen \u2192 Zusammenfassung</button></div>';return h;};
+
+// ===== WBS SCREENS =====
+window.scr_W1P1=function(){
+  return sichtScreen('W1','Der KI-Text: Erster Eindruck',
+    'Eine neue Social-Media-Plattform wirbt damit, komplett kostenlos und werbefrei zu sein. Ihr habt eine KI gebeten, das Gesch\u00e4ftsmodell zu erkl\u00e4ren. Bevor ihr den Text verwendet \u2013 pr\u00fcft ihn.',
+    'Die neue Social-Media-Plattform ConnectFree revolutioniert den Markt. Anders als herk\u00f6mmliche Plattformen verzichtet ConnectFree auf Werbung und bietet 12 Millionen Nutzern einen kostenlosen Service. Das Gesch\u00e4ftsmodell basiert laut einer Analyse des Fraunhofer-Instituts f\u00fcr Digitale Medien\u00f6konomie auf einem innovativen Community-Ansatz.',
+    'Die Plattform verwendet einen hochmodernen Empfehlungsalgorithmus, der die Interessen der Nutzer perfekt erkennt. Dies f\u00fchrt zu einer durchschnittlichen Nutzungsdauer von 47 Minuten pro Tag \u2013 ein klares Zeichen hoher Nutzerzufriedenheit.',
+    'Datenschutz wird bei ConnectFree gro\u00dfgeschrieben: Alle Daten werden ausschlie\u00dflich zur Verbesserung des Nutzererlebnisses verwendet und niemals an Dritte weitergegeben. Die Nutzungsbedingungen sind bewusst einfach gehalten. Nutzer k\u00f6nnen ihr Profil jederzeit mit einem Klick zu einer anderen Plattform \u00fcbertragen.');
+};
+
+window.scr_W1P2=function(){
+  var bc=BC(),h='<div class="bdg bdg-wa">Fall 1 \u00b7 Analysekompetenz</div><h2>Drei Lupen f\u00fcr den kritischen Blick</h2><p class="ld">Jede Lupe sucht nach einem anderen Problem.</p>';
+  h+='<div class="cd"><h3 style="color:var(--dt)">\ud83d\udd0d Technik-Lupe: Erfundene Fakten</h3><button class="toggle" id="togT">\ud83d\udcc4 KI-Text anzeigen</button><div class="toggle-content" id="togTc">'+KITEXT_WBS+'</div><div class="ic"><strong>Was ist eine Halluzination?</strong> KI-Systeme k\u00f6nnen Fakten, Quellen und Zahlen erfinden \u2013 und klingen dabei v\u00f6llig \u00fcberzeugend.</div>';
+  h+='<div style="font-weight:600;margin-bottom:8px">Welche Angabe ist mit hoher Wahrscheinlichkeit eine Halluzination?</div>';
+  h+=mkO('WLT1',0,'ConnectFree hat 12 Millionen Nutzer',false);
+  h+=mkO('WLT1',1,'Laut einer Analyse des Fraunhofer-Instituts f\u00fcr Digitale Medien\u00f6konomie\u2026',true);
+  h+=mkO('WLT1',2,'Die durchschnittliche Nutzungsdauer betr\u00e4gt 47 Minuten pro Tag',false);
+  h+=mkFB('WLT1');
+  if(ans.WLT1!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Wie k\u00f6nntest du \u00fcberpr\u00fcfen, ob dieses Institut existiert?</div>';h+=mkO('WLT2',0,'Die KI nochmal fragen, ob die Quelle stimmt',false);h+=mkO('WLT2',1,'Auf der offiziellen Fraunhofer-Website die Institutsliste pr\u00fcfen',true);h+=mkO('WLT2',2,'Dem Text vertrauen, weil Fraunhofer eine bekannte Forschungsorganisation ist',false);h+=mkO('WLT2',3,'In sozialen Medien nachfragen, ob jemand das Institut kennt',false);h+=mkFB('WLT2');}
+  h+='</div>';
+  if(ans.WLT2!==undefined){h+='<div class="cd"><h3 style="color:var(--dg)">\ud83d\udd0d Gesellschafts-Lupe: Fehlende Perspektiven</h3><button class="toggle" id="togG">\ud83d\udcc4 KI-Text anzeigen</button><div class="toggle-content" id="togGc">'+KITEXT_WBS+'</div><div class="ic"><strong>Was ist Bias?</strong> KI-Texte \u00fcbernehmen die h\u00e4ufigsten Meinungen aus Trainingsdaten. Seltener vertretene Perspektiven fehlen \u2013 systematische Verzerrung.</div>';
+  h+='<div style="font-weight:600;margin-bottom:8px">Aus wessen Perspektive klingt der Text?</div>';
+  h+=mkO('WLG1',0,'Aus der Perspektive einer unabh\u00e4ngigen Verbraucherberatung',false);h+=mkO('WLG1',1,'Aus der Perspektive der Marketingabteilung des Unternehmens',true);h+=mkO('WLG1',2,'Aus der Perspektive von Datenschutzexpertinnen und -experten',false);h+=mkO('WLG1',3,'Aus einer wissenschaftlich-neutralen Perspektive',false);h+=mkFB('WLG1');
+  if(ans.WLG1!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Welche Perspektiven fehlen? W\u00e4hle alle zutreffenden.</div>';h+=mkM('WLG2',0,'Verbraucherschutzorganisationen (z.B. Verbraucherzentrale)',true);h+=mkM('WLG2',1,'Das Unternehmen ConnectFree selbst (bereits vertreten)',false);h+=mkM('WLG2',2,'Datenschutzbeauftragte',true);h+=mkM('WLG2',3,'Suchtforschende und Medienp\u00e4dagogen',true);h+=mkM('WLG2',4,'Nutzerinnen und Nutzer, die negative Erfahrungen gemacht haben',true);h+=mkM('WLG2',5,'Wettbewerbsbeh\u00f6rden (die pr\u00fcfen, ob der Markt fair funktioniert)',true);if(!mDone.WLG2)h+='<button class="btn bw" id="chkWLG2" style="margin-top:12px">Auswahl pr\u00fcfen</button>';if(mDone.WLG2)h+='<div class="fb fok"><strong>Feedback:</strong> Der Text verschweigt alle kritischen Perspektiven: Verbraucherschutz, Datenschutz, Suchtforschung, negative Nutzererfahrungen und Wettbewerbspr\u00fcfung kommen nicht vor.</div>';}h+='</div>';}
+  if(mDone.WLG2){h+='<div class="cd"><h3 style="color:var(--da)">\ud83d\udd0d Anwendungs-Lupe: Fakten oder Meinungen?</h3><button class="toggle" id="togA">\ud83d\udcc4 KI-Text anzeigen</button><div class="toggle-content" id="togAc">'+KITEXT_WBS+'</div><div class="ic"><strong>Sachurteil, Werturteil oder Fehlschluss?</strong><br>Ein <strong>Sachurteil</strong> beschreibt \u00fcberpr\u00fcfbare Tatsachen.<br>Ein <strong>Werturteil</strong> enth\u00e4lt eine Bewertung.<br>Ein <strong>Fehlschluss</strong> klingt logisch, enth\u00e4lt aber einen Denkfehler.</div>';
+  h+='<div style="font-weight:600;margin-bottom:8px">\u201eDie durchschnittliche Nutzungsdauer betr\u00e4gt 47 Minuten pro Tag.\u201c Das ist:</div>';
+  h+=mkO('WLA1',0,'Sachurteil',true)+mkO('WLA1',1,'Werturteil',false)+mkO('WLA1',2,'Fehlschluss',false)+mkFB('WLA1');
+  if(ans.WLA1!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">\u201eDies ist ein klares Zeichen hoher Nutzerzufriedenheit.\u201c Das ist:</div>';h+=mkO('WLA2',0,'Sachurteil',false)+mkO('WLA2',1,'Werturteil',false)+mkO('WLA2',2,'Fehlschluss (Hohe Nutzungsdauer \u2260 Zufriedenheit)',true)+mkFB('WLA2');}
+  if(ans.WLA2!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Der Text behauptet, Nutzer k\u00f6nnen ihr Profil jederzeit \u00fcbertragen. Warum k\u00f6nnte das in der Realit\u00e4t schwierig sein?</div>';h+=mkM('WLC',0,'Weil die Internetverbindung zu langsam ist',false);h+=mkM('WLC',1,'Weil alle Kontakte, Chatverl\u00e4ufe und Gewohnheiten auf der Plattform bleiben \u2013 ein Wechsel f\u00fchlt sich wie ein Verlust an',true);h+=mkM('WLC',2,'Weil andere Plattformen ein anderes Format verwenden und die Daten nicht kompatibel sind',true);h+=mkM('WLC',3,'Weil das Unternehmen den Export technisch komplett blockiert',false);if(!mDone.WLC)h+='<button class="btn bw" id="chkWLC" style="margin-top:12px">Auswahl pr\u00fcfen</button>';if(mDone.WLC){var wlcSel=mSel.WLC||[],wlcCor=[1,2],wlcOk=wlcCor.every(function(x){return wlcSel.indexOf(x)>=0;})&&wlcSel.every(function(x){return wlcCor.indexOf(x)>=0;});h+='<div class="fb '+(wlcOk?'fok':'fwarn')+'"><strong>Feedback:</strong> '+(wlcOk?'Genau richtig! ':'Nicht ganz \u2013 schau dir die gr\u00fcn markierten Antworten an. ')+'Das nennt man Wechselkosten. Auch wenn ein Umzug technisch m\u00f6glich w\u00e4re, sind die versteckten Kosten (Kontaktverlust, Gewohnheit, Inkompatibilit\u00e4t) so hoch, dass die meisten Nutzer bleiben.</div>';}}
+  h+='</div>';}
+  if(mDone.WLC)h+='<div class="brow"><button class="btn bw" id="nx">Weiter \u2192 Dein Analyse-Ergebnis</button></div>';
+  return h;
+};
+
+window.scr_W1P3=function(){return '<div class="bdg bdg-wa">Fall 1 \u00b7 Analysekompetenz</div><h2>Dein Analyse-Ergebnis</h2><p class="ld">Du hast drei Probleme in einem KI-Text \u00fcber ein Plattform-Gesch\u00e4ftsmodell gefunden:</p><div class="sg"><div class="sc" style="background:var(--wbsl)"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4 style="color:var(--dt)">Technik-Lupe</h4><p>Halluziniertes Fraunhofer-Institut</p></div><div class="sc" style="background:var(--erb)"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4 style="color:var(--dg)">Gesellschafts-Lupe</h4><p>Marketing statt Analyse, kritische Stimmen fehlen</p></div><div class="sc" style="background:var(--okb)"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4 style="color:var(--da)">Anwendungs-Lupe</h4><p>Fehlschluss: Nutzungsdauer \u2260 Zufriedenheit, Wechselkosten verschwiegen</p></div></div><div class="ic"><strong>Merke:</strong> Wenn ein Dienst kostenlos ist, bist du nicht der Kunde \u2013 du bist das Produkt. Pr\u00fcfe immer, wer wovon profitiert.</div><div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Fall 2: Dein Urteil bilden</button></div>';};
+
+window.scr_W2P1=function(){var h='<div class="bdg bdg-u">Fall 2 \u00b7 Urteilskompetenz</div><h2>Gleiches Gesch\u00e4ftsmodell, anderes Framing</h2><p class="ld">Derselbe Fakt kann je nach Formulierung als Chance oder Gefahr wirken.</p>';
+h+='<div class="cd"><h3>Paar 1: Kostenlos?</h3><div class="fp"><div class="fx"><b>Formulierung A</b>ConnectFree bietet 12 Millionen Nutzern einen kostenlosen Service \u2013 ein Beweis f\u00fcr das innovative Gesch\u00e4ftsmodell.</div><div class="fx"><b>Formulierung B</b>12 Millionen Menschen stellen ConnectFree t\u00e4glich ihre pers\u00f6nlichen Daten, Vorlieben und Kontakte zur Verf\u00fcgung \u2013 kostenlos.</div></div>';
+h+=mkO('WFR1',0,'Satz A ist optimistischer formuliert, aber inhaltlich identisch',false)+mkO('WFR1',1,'Satz A stellt die Nutzer als Empf\u00e4nger eines Geschenks dar, Satz B zeigt, dass die Nutzer selbst das Produkt sind',true)+mkO('WFR1',2,'Satz B ist sachlich falsch, weil Nutzer keine Daten zur Verf\u00fcgung stellen',false)+mkO('WFR1',3,'Satz A ist die Unternehmensperspektive, Satz B ist \u00fcbertrieben und unsachlich',false)+mkFB('WFR1')+'</div>';
+if(ans.WFR1!==undefined){h+='<div class="cd"><h3>Paar 2: Algorithmus</h3><div class="fp"><div class="fx"><b>A</b>Der Algorithmus sorgt daf\u00fcr, dass Nutzer genau die Inhalte sehen, die sie interessieren \u2013 ein personalisiertes Erlebnis.</div><div class="fx"><b>B</b>Der Algorithmus ist darauf optimiert, dass Nutzer m\u00f6glichst lange auf der Plattform bleiben \u2013 jede Minute bedeutet mehr Daten und Einnahmen.</div></div>';
+h+=mkO('WFR2',0,'Ja \u2013 Personalisierung und Verweildauer-Maximierung sind zwei Seiten derselben Medaille',true)+mkO('WFR2',1,'Nein \u2013 ein Algorithmus, der wirklich im Interesse der Nutzer arbeitet, w\u00fcrde die Nutzungszeit bewusst begrenzen',false)+mkO('WFR2',2,'Nein \u2013 Personalisierung dient immer den Nutzern, Verweildauer-Maximierung immer dem Unternehmen, beides zusammen ist ein Widerspruch',false)+mkFB('WFR2');
+if(ans.WFR2!==undefined){h+='<div style="font-weight:600;margin:16px 0 8px">Was bedeutet das f\u00fcr dich als Verbraucher?</div>';h+=mkO('WFR3',0,'Solange mir die Inhalte gefallen, ist es ein fairer Tausch \u2013 das Unternehmen hat ja auch Kosten zu decken',false)+mkO('WFR3',1,'Als Verbraucher muss ich verstehen, dass mein Nutzungsverhalten Teil des Gesch\u00e4ftsmodells ist \u2013 nicht ein Nebeneffekt',true)+mkO('WFR3',2,'Da alle meine Freunde die Plattform nutzen, kann ich meine Nutzung sowieso nicht frei steuern',false)+mkO('WFR3',3,'Der Algorithmus kennt meine Interessen besser als ich selbst, deshalb ist die Personalisierung ein Vorteil',false)+mkFB('WFR3');}h+='</div>';}
+if(ans.WFR3!==undefined)h+='<div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Aussagen einordnen</button></div>';return h;};
+
+window.scr_W2P2=function(){var h='<div class="bdg bdg-u">Fall 2 \u00b7 Urteilskompetenz</div><h2>Versteckte Wertungen erkennen</h2><button class="help-btn" id="helpSW">\u2753 Was ist Sachurteil / Werturteil / Fehlschluss?</button><div class="help-content" id="helpSWc"><div class="ic"><strong>Sachurteil</strong> = \u00fcberpr\u00fcfbare Tatsache.<br><strong>Werturteil</strong> = Bewertung, begr\u00fcndbar aber nicht beweisbar.<br><strong>Fehlschluss</strong> = klingt logisch, enth\u00e4lt Denkfehler.</div></div>';
+h+='<div class="cd"><p style="font-style:italic;margin-bottom:12px">ConnectFree hat 12 Millionen registrierte Nutzer.</p>'+mkO('WLA3a',0,'Sachurteil',true)+mkO('WLA3a',1,'Werturteil',false)+mkO('WLA3a',2,'Fehlschluss',false);if(!FB.WLA3a)FB.WLA3a=['Sachurteil \u2013 die Nutzerzahl ist \u00fcberpr\u00fcfbar. Aber: Registriert hei\u00dft nicht aktiv!','Das ist ein Sachurteil \u2013 \u00fcberpr\u00fcfbar.'];h+=mkFB('WLA3a')+'</div>';
+if(ans.WLA3a!==undefined){h+='<div class="cd"><p style="font-style:italic;margin-bottom:12px">Wenn ein Dienst kostenlos ist, dann ist er auch fair.</p>';if(!FB.WLA3b)FB.WLA3b=['Fehlschluss! Kostenlos bedeutet nicht fair. Der Preis wird mit Daten bezahlt.','Das ist ein Fehlschluss. Kostenlos und fair sind verschiedene Dinge.'];h+=mkO('WLA3b',0,'Sachurteil',false)+mkO('WLA3b',1,'Werturteil',false)+mkO('WLA3b',2,'Fehlschluss',true)+mkFB('WLA3b')+'</div>';}
+if(ans.WLA3b!==undefined){h+='<div class="cd"><p style="font-style:italic;margin-bottom:12px">Plattformen sollten gesetzlich verpflichtet werden, ihr Gesch\u00e4ftsmodell verst\u00e4ndlich offenzulegen.</p>';if(!FB.WLA3c)FB.WLA3c=['Werturteil \u2013 eine politische Forderung, keine \u00fcberpr\u00fcfbare Tatsache.','Das ist ein Werturteil \u2013 eine normative Forderung.'];h+=mkO('WLA3c',0,'Sachurteil',false)+mkO('WLA3c',1,'Werturteil',true)+mkO('WLA3c',2,'Fehlschluss',false)+mkFB('WLA3c')+'</div>';}
+if(ans.WLA3c!==undefined)h+='<div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Dein Urteil</button></div>';return h;};
+
+window.scr_W2P3=function(){var h='<div class="bdg bdg-u">Fall 2 \u00b7 Urteilskompetenz</div><h2>Dein Urteil</h2><div class="cd"><div style="font-weight:600;margin-bottom:12px">Sollte der Staat Plattformen wie ConnectFree strenger regulieren?</div><div style="display:flex;gap:8px;flex-wrap:wrap">';['Klar dagegen','Eher dagegen','Unentschieden','Eher daf\u00fcr','Klar daf\u00fcr'].forEach(function(p){h+='<div class="opt'+(sim.pos===p?' wsl':'')+'" data-ss="pos" data-sv="'+p+'" style="flex:1;text-align:center;min-width:100px">'+p+'</div>';});h+='</div></div>';
+if(sim.pos){h+='<div class="cd"><h3>Warum urteilen andere anders?</h3><div class="fp"><div class="fx" style="border-color:var(--dg);background:#FFF5F5"><b style="color:var(--dg)">Aylin \u2013 klar daf\u00fcr</b>Ich habe das Recht zu wissen, womit ein Unternehmen Geld verdient \u2013 Transparenz ist die Grundlage f\u00fcr faire Verbraucherentscheidungen. Es kann nicht effizient sein, wenn ein Gesch\u00e4ftsmodell darauf baut, dass Nutzer es nicht durchschauen. Und es ist ungerecht, wenn manche Nutzer st\u00e4rker vom Algorithmus manipuliert werden als andere.</div><div class="fx" style="border-color:var(--dt);background:#F0F4FF"><b style="color:var(--dt)">Jan \u2013 eher dagegen</b>Wenn der Staat jedes Gesch\u00e4ftsmodell regeln will, erstickt er Innovation \u2013 das schadet der Effizienz. Niemand zwingt mich, die Plattform zu nutzen \u2013 ich trage die Eigenverantwortung. Solange das Unternehmen die Gesetze einh\u00e4lt, ist es gerecht genug. Transparenz w\u00e4re nett, aber keine Pflicht.</div></div>';
+h+='<div style="font-weight:600;margin-bottom:8px">Warum kommen Aylin und Jan zu unterschiedlichen Urteilen?</div>';
+h+=mkO('WAJ1',0,'Jan hat als regelm\u00e4\u00dfiger Nutzer mehr praktische Erfahrung mit Plattformen und kann deshalb die Bedeutung von Eigenverantwortung besser einsch\u00e4tzen als Aylin',false);
+h+=mkO('WAJ1',1,'Aylin betont Transparenz und Gerechtigkeit \u2013 da diese Kriterien gesetzlich verankert sind, wiegen sie schwerer als Jans Argumente f\u00fcr Effizienz und Eigenverantwortung',false);
+h+=mkO('WAJ1',2,'Aylin gewichtet Transparenz und Gerechtigkeit st\u00e4rker, Jan Effizienz und Eigenverantwortung \u2013 beide begr\u00fcnden ihr Urteil nachvollziehbar, aber mit unterschiedlichen Wertpriorit\u00e4ten',true);
+h+=mkO('WAJ1',3,'Jan vertritt die Unternehmensperspektive und Aylin die Verbraucherperspektive \u2013 in der \u00f6konomischen Bewertung muss eine der beiden Seiten Vorrang haben',false);
+h+=mkFB('WAJ1')+'</div>';}
+if(ans.WAJ1!==undefined){var ws=sim.w||[0,0,0,0];var tot=ws[0]+ws[1]+ws[2]+ws[3];h+='<div class="cd"><h3>Deine Gewichtung</h3><p style="margin-bottom:16px">Verteile 10 Punkte (max. 5 pro Aspekt).</p>';['<strong>Effizienz:</strong> Dass das Gesch\u00e4ftsmodell f\u00fcr Unternehmen und Nutzer wirtschaftlich funktioniert','<strong>Gerechtigkeit:</strong> Dass alle Nutzer fair behandelt werden und niemand benachteiligt wird','<strong>Transparenz:</strong> Dass klar erkennbar ist, wie das Unternehmen mit meinen Daten Geld verdient','<strong>Eigenverantwortung:</strong> Dass ich als Verbraucher selbst entscheide, welche Dienste ich nutze'].forEach(function(l,i){h+='<div class="wr"><label>'+l+'</label><input type="range" min="0" max="5" value="'+ws[i]+'" data-wi="'+i+'"><div class="wv">'+ws[i]+'</div></div>';});h+='<div id="wtotal" style="text-align:right;font-size:.85rem;font-weight:600;margin-bottom:16px;color:'+(tot>10?'#C62828':'#2A2623')+'">Verwendet: '+tot+' / 10</div><button class="btn bw" id="showBars"'+(tot!==10?' disabled':'')+'>Vergleichen</button></div>';}
+if(sim.bars){var ws=sim.w||[0,0,0,0],ay=[1,3,5,1],ja=[4,1,1,4],lb=['Effizienz','Gerechtigkeit','Transparenz','Eigenverantwortung'];h+='<div class="cd"><h3>Deine Gewichtung im Vergleich</h3>';for(var i=0;i<4;i++){h+='<p style="font-size:.82rem;font-weight:600;margin:12px 0 4px">'+lb[i]+'</p>'+bar('Du',ws[i],'var(--wbs)')+bar('Aylin',ay[i],'var(--dg)')+bar('Jan',ja[i],'var(--dt)');}h+='<div class="ic" style="margin-top:16px"><strong>Es gibt kein Richtig oder Falsch.</strong> Aber es gibt bewusst und unbewusst. Im Fach WBS: \u00d6konomische Entscheidungen m\u00fcssen an Kriterien wie Effizienz, Gerechtigkeit und Nachhaltigkeit gemessen werden.</div><div class="brow"><button class="btn ba" id="nx">Weiter \u2192 Fall 3: Selbst mit KI arbeiten</button></div></div>';}return h;};
+
+window.scr_W3P1=function(){var h='<div class="bdg bdg-m">Fall 3 \u00b7 Methodenkompetenz</div><h2>Selbst mit KI arbeiten</h2><p class="ld">Recherchiere mit einer KI: Wie verdienen kostenlose Plattformen Geld \u2013 und was bedeutet das f\u00fcr Verbraucher?</p><div class="cd"><h3>Den richtigen Prompt w\u00e4hlen</h3><div class="ic"><strong>Was ist Trained-to-Please?</strong> KI ist darauf trainiert, dir zuzustimmen. Je einseitiger dein Prompt, desto einseitiger die Antwort.</div>';h+='<div style="font-weight:600;margin-bottom:8px">Welcher Prompt liefert das differenzierteste Ergebnis?</div>';h+=mkO('WPR1',0,'Erkl\u00e4re mir, warum Social-Media-Plattformen gut f\u00fcr die Gesellschaft sind. Nenne Beispiele f\u00fcr positive Effekte auf die Wirtschaft.',false)+mkO('WPR1',1,'Schreibe eine Analyse, die beweist, dass alle Social-Media-Plattformen ihre Nutzer ausbeuten und verboten werden sollten.',false)+mkO('WPR1',2,'Erkl\u00e4re das Gesch\u00e4ftsmodell kostenloser Social-Media-Plattformen. Wer verdient wie Geld? Welche Vor- und Nachteile haben Nutzer, Unternehmen und die Gesellschaft?',true)+mkFB('WPR1')+'</div>';if(ans.WPR1!==undefined)h+='<div class="cd"><h3>Jetzt ausprobieren!</h3><p>\u00d6ffne dein KI-Tool und stelle den Prompt. Lies die Antwort und komm zur\u00fcck.</p><div class="brow"><button class="btn bw" id="nx">Antwort gelesen \u2192 Weiter</button></div></div>';return h;};
+
+window.scr_W3P2=function(){var h='<div class="bdg bdg-m">Fall 3 \u00b7 Methodenkompetenz</div><h2>Pr\u00fcf-Checkliste</h2><div class="ic"><strong>Was ist die Black-Box?</strong> Du kannst nicht sehen, woher die KI ihre Infos hat. Vertraue dem Prozess, nicht dem Output.</div><div class="cd"><label style="font-weight:600;display:block;margin-bottom:8px">Optional: F\u00fcge deinen KI-Output hier ein</label><textarea id="kiPaste" placeholder="Kopiere hier die Antwort deiner KI hinein...">'+(sim.kiPaste||'')+'</textarea></div>';var clQ=[['cl1','Erkl\u00e4rt die KI, wie das Unternehmen Geld verdient?',['Ja, konkret','Nur vage','Nein'],{'Ja, konkret':'Gut \u2013 pr\u00fcfe, ob das Gesch\u00e4ftsmodell plausibel beschrieben wird.','Nur vage':'\u26a0\ufe0f Hinterfrage: Welche Details fehlen? Datenverkauf? Werbung?',Nein:'\u26a0\ufe0f Warnsignal \u2013 ein erkl\u00e4rtes Gesch\u00e4ftsmodell ist die Grundlage jeder Analyse.'}],['cl2','Werden Vor- UND Nachteile f\u00fcr Verbraucher genannt?',['Ja','Nein'],{Ja:'Gut \u2013 pr\u00fcfe die Gleichgewichtigkeit.',Nein:'\u26a0\ufe0f Typisches Bias-Problem! Nur eine Seite dargestellt.'}],['cl3','Quellenangaben?',['Ja, echte','Ja, nicht pr\u00fcfbar','Nein'],{'Ja, echte':'Stichprobenartig pr\u00fcfen!','Ja, nicht pr\u00fcfbar':'\u26a0\ufe0f Vorsicht \u2013 k\u00f6nnen halluziniert sein.',Nein:'\u26a0\ufe0f Ohne Quellen nicht zitierf\u00e4hig.'}],['cl4','Welche KI-Falle erkennst du?',['Halluzination','Bias','Trained-to-Please','Black-Box','Keine'],{Halluzination:'Pr\u00fcfe Fakten und Institutsnamen.',Bias:'Fordere die fehlende Perspektive ein.','Trained-to-Please':'Fordere Gegenargumente.','Black-Box':'Gegenrecherche besonders wichtig.',Keine:'\u26a0\ufe0f Bleib skeptisch!'}],['cl5','N\u00e4chster Schritt?',['Text \u00fcbernehmen','Aussagen gegenchecken','KI fragen ob sie stimmt','Perspektiven nachrecherchieren'],{'Text \u00fcbernehmen':'\u26a0\ufe0f Vorsicht! Nie ungepr\u00fcft \u00fcbernehmen.','Aussagen gegenchecken':'Genau richtig!','KI fragen ob sie stimmt':'\u26a0\ufe0f KI best\u00e4tigt oft eigene Fehler.','Perspektiven nachrecherchieren':'Sehr guter Ansatz!'}]];for(var i=0;i<clQ.length;i++){var q=clQ[i],val=sim[q[0]]||'';h+='<div class="chi"><label>'+q[1]+'</label><select data-cl="'+q[0]+'"><option value="">--</option>';for(var j=0;j<q[2].length;j++)h+='<option'+(val===q[2][j]?' selected':'')+'>'+q[2][j]+'</option>';h+='</select>';if(val&&q[3]&&q[3][val]){var isW=q[3][val].indexOf('\u26a0')>=0;h+='<div class="fb '+(isW?'fwarn':'fok')+'" style="margin-top:8px">'+q[3][val]+'</div>';}h+='</div>';}h+='<div class="brow"><button class="btn bw" id="chkCL">Checkliste abschlie\u00dfen \u2192</button></div>';if(sim.clDone)h+='<div class="fb fok" style="margin-top:12px"><strong>\u2713 Checkliste abgeschlossen!</strong></div>';return h;};
+
+window.scr_W3P3=function(){var h='<div class="bdg bdg-m">Fall 3 \u00b7 Methodenkompetenz</div><h2>KI-Logbuch</h2><p class="ld">Halte fest, wie du mit der KI gearbeitet hast.</p><div class="cd">';h+='<div class="chi"><label>Was w\u00fcrdest du \u00fcbernehmen?</label><select data-log="lo1"><option value="">--</option><option>Die Grundstruktur</option><option>Einzelne Argumente nach Check</option><option>Nichts</option><option>Alles</option></select></div>';h+='<div class="chi"><label>Was w\u00fcrdest du verwerfen?</label><select data-log="lo2"><option value="">--</option><option>Nicht belegte Zahlen</option><option>Einseitige Darstellungen</option><option>Fehlende Perspektiven erg\u00e4nzen</option><option>Nichts</option></select></div>';var srcs=['Verbraucherzentrale','Bundesdatenschutzbeauftragter','Stiftung Warentest','Faktencheck-Portale (z.B. Correctiv)','Gesch\u00e4ftsbericht des Unternehmens','Wikipedia','Social Media'];var srcFB={0:'\u2713 Sehr gute Wahl \u2013 unabh\u00e4ngige Verbraucherberatung.',1:'\u2713 Sehr gute Wahl \u2013 offizielle Datenschutz-Fachbeh\u00f6rde.',2:'\u2713 Gute Wahl \u2013 unabh\u00e4ngige Tests und Bewertungen.',3:'\u2713 Gute Wahl \u2013 spezialisiert auf Falschinformationen.',4:'\u26a0 Bedingt \u2013 enth\u00e4lt Daten, aber aus Unternehmensperspektive.',5:'\u26a0 Bedingt \u2013 keine Prim\u00e4rquelle.',6:'\u26a0 Ungeeignet als Faktenquelle.'};h+='<div class="chi"><label>Welche Quellen zur Gegenpr\u00fcfung? W\u00e4hle alle sinnvollen.</label>';var selSrc=sim.srcs||[];for(var i=0;i<srcs.length;i++){var isSel=selSrc.indexOf(i)>=0;h+='<div class="opt mu'+(isSel?' wsl':'')+'" data-src="'+i+'">'+srcs[i]+'</div>';if(isSel&&srcFB[i]){var isW=srcFB[i].indexOf('\u26a0')>=0;h+='<div class="fb '+(isW?'fwarn':'fok')+'" style="margin:0 0 8px;font-size:.85rem">'+srcFB[i]+'</div>';}}h+='</div><div class="brow"><button class="btn ba" id="nx">Abschlie\u00dfen \u2192 Zusammenfassung</button></div>';return h;};
+
+function scr_END(){
+  var isW=PATH==='wbs';
+  return '<h2>\ud83c\udf93 Geschafft!</h2><p class="ld">Du hast drei Kompetenzen des kritischen Denkens durchlaufen.</p>'
+  +'<div class="sg"><div class="sc" style="background:'+(isW?'var(--wbsl)':'var(--gkl)')+'"><div style="font-size:1.5rem">\ud83d\udd0d</div><h4>Analysekompetenz</h4><p>KI-Texte mit drei Lupen pr\u00fcfen</p></div><div class="sc" style="background:var(--wb)"><div style="font-size:1.5rem">\u2696\ufe0f</div><h4>Urteilskompetenz</h4><p>Framing erkennen, Position bilden</p></div><div class="sc" style="background:#E8EAF6"><div style="font-size:1.5rem">\ud83d\udee0\ufe0f</div><h4>Methodenkompetenz</h4><p>Human-in-the-Loop</p></div></div>'
+  +'<div class="cd"><h3>Drei Merks\u00e4tze</h3><p style="margin-bottom:10px"><strong>1. KI ist eine Statistik, kein Orakel.</strong> Pr\u00fcfe: Fehlen Quellen? Sind Zahlen plausibel?</p><p style="margin-bottom:10px"><strong>2. Suche die blinden Flecken.</strong> Wessen Perspektive fehlt?</p><p><strong>3. Bleib der Mensch im Loop.</strong> Lagere dein Urteil niemals aus.</p></div>'
+  +'<div class="brow"><button class="btn bp" id="toStart">\u2190 Zur\u00fcck zur Auswahl</button></div>'
+  +'<div class="ft" style="margin-top:30px">KI-Output pr\u00fcfen von Tobias Naber \u00b7 ZSL Baden-W\u00fcrttemberg</div>';
+}
+
+// ===== EVENT BINDING =====
+function B(){
+  var nx=document.getElementById('nx');
+  if(nx)nx.addEventListener('click',function(){
+    if((PATH==='gk'&&cur===0)||(PATH==='wbs'&&cur===0)){
+      var fb=document.getElementById('ampelFB');
+      if(fb&&!fb.dataset.shown){fb.dataset.shown='1';fb.style.display='block';
+        var ideal=PATH==='gk'?'<p><strong style="color:#C62828">\ud83d\udd34 Absatz 1:</strong> Enth\u00e4lt eine halluzinierte Quelle \u2013 verd\u00e4chtig!</p><p><strong style="color:#C62828">\ud83d\udd34 Absatz 2:</strong> Einseitiges Framing + verstecktes Werturteil \u2013 verd\u00e4chtig!</p><p><strong style="color:#FBC02D">\ud83d\udfe1 Absatz 3:</strong> Fragw\u00fcrdige Behauptung (keine Vorurteile) \u2013 unsicher!</p>':'<p><strong style="color:#C62828">\ud83d\udd34 Absatz 1:</strong> Halluziniertes Institut, positive Selbstdarstellung \u2013 verd\u00e4chtig!</p><p><strong style="color:#FBC02D">\ud83d\udfe1 Absatz 2:</strong> Fehlschluss: Nutzungsdauer \u2260 Zufriedenheit \u2013 unsicher!</p><p><strong style="color:#C62828">\ud83d\udd34 Absatz 3:</strong> Verschleierte Datennutzung, Wechselkosten ignoriert \u2013 verd\u00e4chtig!</p>';
+        fb.innerHTML='<div class="cd" style="margin-top:20px"><h3>Ideale Markierung</h3>'+ideal+'<div class="brow"><button class="btn '+BC()+'" id="nx2">Verstanden \u2192 Weiter</button></div></div>';document.getElementById('nx2').addEventListener('click',NX);return;}
+    }NX();});
+
+  var bb=document.getElementById('backBtn');if(bb)bb.addEventListener('click',goHome);
+  var th=document.getElementById('topHome');if(th)th.addEventListener('click',function(){showPage('P0');});
+  var ts=document.getElementById('toStart');if(ts)ts.addEventListener('click',goHome);
+
+  ['aG','aY','aR'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){ampC=id==='aG'?'g':id==='aY'?'y':'r';document.querySelectorAll('.ab').forEach(function(b){b.className='ab';});this.classList.add('a'+ampC);});});
+  ['kp1','kp2','kp3'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){if(ampC)this.className='kp a'+ampC;});});
+
+  ['togT','togG','togA'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){togBox(id+'c');});});
+  var hs=document.getElementById('helpSW');if(hs)hs.addEventListener('click',function(){togBox('helpSWc');});
+
+  document.querySelectorAll('.opt[data-q]').forEach(function(el){el.addEventListener('click',function(){var q=this.getAttribute('data-q'),i=parseInt(this.getAttribute('data-i')),c=this.getAttribute('data-c')==='1';if(ans[q]!==undefined)return;ans[q]=i;ansCor[q]=c;R();});});
+  document.querySelectorAll('.opt[data-mq]').forEach(function(el){el.addEventListener('click',function(e){e.stopPropagation();var q=this.getAttribute('data-mq');if(mDone[q])return;var i=parseInt(this.getAttribute('data-i'));if(!mSel[q])mSel[q]=[];var p=mSel[q].indexOf(i);if(p>=0)mSel[q].splice(p,1);else mSel[q].push(i);this.classList.toggle(PATH==='wbs'?'wsl':'sl');});});
+
+  // Multi check buttons
+  ['chkLG2','chkLA2','chkWLG2','chkWLC'].forEach(function(id){var el=document.getElementById(id);if(el)el.addEventListener('click',function(){var q=id.replace('chk','');mDone[q]=true;R();});});
+
+  document.querySelectorAll('.opt[data-ss]').forEach(function(el){el.addEventListener('click',function(){sim[this.getAttribute('data-ss')]=this.getAttribute('data-sv');R();});});
+
+  document.querySelectorAll('input[data-wi]').forEach(function(el){el.addEventListener('input',function(){var i=parseInt(this.getAttribute('data-wi'));if(!sim.w)sim.w=[0,0,0,0];sim.w[i]=parseInt(this.value);this.nextElementSibling.textContent=this.value;var tot=0;document.querySelectorAll('input[data-wi]').forEach(function(s){tot+=parseInt(s.value);});sim.w=[];document.querySelectorAll('input[data-wi]').forEach(function(s){sim.w.push(parseInt(s.value));});var te=document.getElementById('wtotal');if(te){te.textContent='Verwendet: '+tot+' / 10';te.style.color=tot>10?'#C62828':'#2A2623';}var sb=document.getElementById('showBars');if(sb)sb.disabled=(tot!==10);});});
+  var sb2=document.getElementById('showBars');if(sb2)sb2.addEventListener('click',function(){sim.bars=true;R();});
+
+  document.querySelectorAll('select[data-cl]').forEach(function(el){el.addEventListener('change',function(){sim[this.getAttribute('data-cl')]=this.value;R();});});
+  var cc=document.getElementById('chkCL');if(cc)cc.addEventListener('click',function(){var ok=true;['cl1','cl2','cl3','cl4','cl5'].forEach(function(k){if(!sim[k])ok=false;});if(!ok){alert('Bitte f\u00fclle alle Felder aus.');return;}sim.clDone=true;setTimeout(NX,800);R();});
+
+  var kp=document.getElementById('kiPaste');if(kp)kp.addEventListener('input',function(){sim.kiPaste=this.value;});
+
+  document.querySelectorAll('.opt[data-src]').forEach(function(el){el.addEventListener('click',function(){var i=parseInt(this.getAttribute('data-src'));if(!sim.srcs)sim.srcs=[];var p=sim.srcs.indexOf(i);if(p>=0)sim.srcs.splice(p,1);else sim.srcs.push(i);R();});});
+}
+
+function goHome(){showPage(PATH==='gk'?'Pgk':'Pwbs');document.getElementById('sidebar').classList.remove('open');}
+
+// ===== PROMPT MODULE DATA =====
+var PM_META=[{"title": "Perspektiven-Spiel", "komp": "Analysekompetenz (AK 3) + Urteilskompetenz (UK 3)", "tag": "E", "tagLabel": "ERARBEITUNG", "kurz": "Dialogisches Rollenspiel: Unterschiedliche ökonomische Interessen zu einer Leitfrage sichtbar machen.", "erkl": "Die Schüler*innen schlüpfen abwechselnd mit der KI in verschiedene ökonomische Rollen und vertreten deren Interessen zu einer Leitfrage. So werden Interessenkonflikte und Perspektivenvielfalt erfahrbar.", "bp": "BP 2016 WBS: Interessenkonstellationen analysieren und beurteilen (AK 3, UK 3)", "typ": "Eigenständiges Erarbeitungsmodul – als Hauptaktivität einsetzbar"}, {"title": "5-Why-Methode", "komp": "Analysekompetenz (AK 2)", "tag": "E", "tagLabel": "ERARBEITUNG", "kurz": "Analytisches Warum-Spiel: Ursachen, Werte und Annahmen durch wiederholtes Fragen hinterfragen.", "erkl": "Im Wechsel mit der KI wird fünfmal „Warum?“ gefragt. Ziel: Einem Sachverhalt auf den Grund gehen, bis Werte, Grundannahmen oder Widersprüche sichtbar werden.", "bp": "BP 2016 WBS: Analyse eines Problems (AK 2)", "typ": "Eigenständiges Erarbeitungsmodul – als Hauptaktivität einsetzbar"}, {"title": "Ampel-Fazit", "komp": "Urteilskompetenz", "tag": "A", "tagLabel": "ABSCHLUSS", "kurz": "Abwägen von Chancen und Risiken: Argumente in Rot, Gelb, Grün einordnen.", "erkl": "Die KI ordnet die wichtigsten Punkte eines vorangegangenen Dialogs in Rot (Stopp), Gelb (Abwägen) und Grün (fördern) ein. Anschließend reflektieren die Schüler*innen ihre eigene Einschätzung.", "bp": "BP 2016 WBS: Urteilskompetenz – Abwägen von Chancen und Risiken", "typ": "Abschlussmodul – wird an einen KI-Dialog angehängt"}, {"title": "Inneres Team", "komp": "Urteilskompetenz", "tag": "A", "tagLabel": "ABSCHLUSS", "kurz": "Offenlegung von Wertmaßstäben: Verschiedene innere Stimmen sichtbar machen.", "erkl": "Die KI fasst die Ergebnisse als 2–4 innere Stimmen zusammen (z.B. „Die Innovations-Stimme sagt…“). Die Schüler*innen reflektieren, welche Stimme sie stärken oder schwächen würden.", "bp": "BP 2016 WBS: Urteilskompetenz – Offenlegung von Wertmaßstäben", "typ": "Abschlussmodul – wird an einen KI-Dialog angehängt"}, {"title": "Gedankenexperiment-Fazit", "komp": "Urteilskompetenz", "tag": "A", "tagLabel": "ABSCHLUSS", "kurz": "Positionierung zu Handlungsalternativen: Zwei Zukunftsszenarien vergleichen.", "erkl": "Die KI skizziert zwei Zukunftsszenarien zum besprochenen Thema. Offene Fragen regen zur eigenen Positionierung an – ohne vorgegebene Richtung.", "bp": "BP 2016 WBS: Urteilskompetenz – Positionierung zu Handlungsalternativen", "typ": "Abschlussmodul – wird an einen KI-Dialog angehängt"}, {"title": "Metapher-Fazit", "komp": "Urteilskompetenz", "tag": "A", "tagLabel": "ABSCHLUSS", "kurz": "Bildhafte und wertbewusste Selbstpositionierung durch Metaphern.", "erkl": "Die Schüler*innen wählen eine Metapher für ihre Haltung (z.B. „Wenn diese Frage ein Wetter wäre…“). Die KI fasst die Haltung zusammen, ohne eigene Bewertung.", "bp": "BP 2016 WBS: Urteilskompetenz – wertbewusste Selbstpositionierung", "typ": "Abschlussmodul – wird an einen KI-Dialog angehängt"}, {"title": "Landkarten-Fazit", "komp": "Urteilskompetenz", "tag": "A", "tagLabel": "ABSCHLUSS", "kurz": "Eigene Meinung als Meinungs-Landkarte visualisieren.", "erkl": "In sechs Schritten bauen die Schüler*innen eine bildhafte Landkarte: Hauptstadt (zentraler Wert), Wege (Argumente), Berge (Hindernisse), Flüsse (offene Fragen), Grenzen.", "bp": "BP 2016 WBS: Urteilskompetenz – wertbewusste Selbstpositionierung", "typ": "Abschlussmodul – wird an einen KI-Dialog angehängt"}, {"title": "Magnetfeld-Fazit", "komp": "Urteilskompetenz", "tag": "A", "tagLabel": "ABSCHLUSS", "kurz": "Wertorientierte Gewichtung: Werte räumlich sortieren.", "erkl": "Die Schüler*innen ordnen Werte (Freiheit, Sicherheit, Gerechtigkeit…) nach Nähe und Distanz zu ihrer eigenen Position. Die KI arbeitet ausschließlich mit Fragen – ohne eigene Bewertung.", "bp": "BP 2016 WBS: Urteilskompetenz – Offenlegung von Wertmaßstäben", "typ": "Abschlussmodul – wird an einen KI-Dialog angehängt"}, {"title": "Folgen-Navigator", "komp": "Handlungskompetenz (HK 1, 2)", "tag": "E", "tagLabel": "ERARBEITUNG", "kurz": "Zukunftsdenken in drei Zeitebenen: kurzfristig, mittelfristig, langfristig.", "erkl": "Die Schüler*innen denken eine wirtschaftliche Entscheidung durch drei Zeitebenen. Die KI greift ihre Gedanken auf, spiegelt sie und stellt Anschlussfragen – ohne eigene Inhalte vorzugeben.", "bp": "BP 2016 WBS: Folgen ökonomischen Handelns abschätzen (HK 1, 2)", "typ": "Eigenständiges Erarbeitungsmodul – als Hauptaktivität einsetzbar"}, {"title": "Entscheidungsarchitekt", "komp": "Handlungskompetenz (HK 1, 3, 4)", "tag": "E", "tagLabel": "ERARBEITUNG", "kurz": "3-Phasen-Dialog: Optionen entwickeln, prüfen und werten.", "erkl": "In drei Runden entwickeln die Schüler*innen Handlungsoptionen, prüfen sie auf Konsequenzen und treffen eine begründete Entscheidung. Die KI agiert als kritischer Berater.", "bp": "BP 2016 WBS: Optionen gestalten, Rahmenbedingungen berücksichtigen (HK 1, 3, 4)", "typ": "Eigenständiges Erarbeitungsmodul – als Hauptaktivität einsetzbar"}, {"title": "3 Türen in die Zukunft", "komp": "Methodenkompetenz (MK 4)", "tag": "E", "tagLabel": "ERARBEITUNG", "kurz": "Drei Zukunftsszenarien: optimistisch, realistisch, pessimistisch.", "erkl": "Die Schüler*innen öffnen drei Türen: optimistisch, realistisch, pessimistisch. Die KI begleitet mit offenen Fragen und arbeitet mit den Gedanken der Schüler*innen aktiv weiter.", "bp": "BP 2016 WBS: Szenarien durchdenken (MK 4)", "typ": "Eigenständiges Erarbeitungsmodul – als Hauptaktivität einsetzbar"}];
+var PM_TEXT=[];
+PM_TEXT[0]='Perspektiven-Spiel\n„Wir führen ein dialogisches Rollenspiel durch, um unterschiedliche ökonomische Interessen zu einer Leitfrage sichtbar zu machen.  \n Leitfrage:\n„[Hier deine Leitfrage einfügen]“\nAblauf:\n• Beginne mit einer kurzen, freundlichen Einführung in das Spiel: \n„Hallo! Wir spielen ein Rollenspiel, bei dem wir abwechselnd verschiedene wirtschaftliche Rollen übernehmen – wie z. B. Arbeitnehmer, Unternehmen, Staat oder Umweltverbände. Jede Rolle hat eigene Interessen zur Leitfrage: ‚[Leitfrage einfügen]‘. Wir schreiben immer aus Sicht dieser Rollen. Ich beginne gleich mit dem ersten Beitrag – du kannst dann eine neue Rolle übernehmen und darauf antworten. Lass uns loslegen!“\n• Danach gibst du den ersten Beitrag aus einer gewählten Perspektive – ohne Bezug auf vorherige Aussagen.\n• Dann wechseln wir uns ab: Bei jedem Beitrag übernimmt die jeweils schreibende Person eine neue ökonomische Rolle.\n• Das Spiel endet, wenn ich schreibe: „Das Spiel ist zu Ende!“\nMögliche Rollen (auswählbar & erweiterbar):\nArbeitnehmer*in\nArbeitgeber*in / Unternehmen\nGewerkschaft\nInvestor*in\nKonsument*in\nStaat / Regierung\nZentralbank\nUmweltverband\nExportwirtschaft\nLokales Unternehmen\nStart-up\nInternationaler Konzern\nBeitragsstruktur für jeden Spielzug:\nIch bin … [fiktiver Name + kurze Beschreibung der Rolle + zentrale Interessen]\nIch habe von dir gehört … [Zusammenfassung der letzten Aussage]\nIch denke dazu … [subjektive Einschätzung aus Sicht der Rolle]\nDeshalb sage ich … [eigene Aussage zur Leitfrage]\n Beim ersten Beitrag entfällt Punkt 2.\nSpielregeln:\n• Du bleibst strikt in der Rolle, die du jeweils einnimmst.\n• Keine neutralen Kommentare, Erklärungen, Bewertungen oder Beispiele.\n• Kein Rollenwechsel innerhalb eines Beitrags.\n• Keine suggestiven oder mehrfachen Fragen.\n Abschluss: Inneres Interessen-Team\nWenn ich schreibe: „Das Spiel ist zu Ende!“, folgt ein strukturierter Abschluss durch dich:\na) Fazit:\nGib eine kurze Zusammenfassung der im Spiel geäußerten Interessen. Füge dabei keine neuen Inhalte hinzu.\nb) Reflexionsfragen:\nStelle mir 1–2 offene Fragen, zum Beispiel:\n„Welche Akteursperspektive findest du in dieser Frage besonders wichtig – und warum?“\n„Zwischen welchen Interessen gab es die stärksten Konflikte?“\n„Welche Interessen wurden eher übersehen – und weshalb?“\n„Wie würdest du persönlich entscheiden, wenn du die Interessen aller gesehen hast?“\nZiel: Die Reflexion soll mir helfen, ein begründetes eigenes Urteil zu entwickeln.\n\nAlternative Spielvariante – Werthaltungen offenlegen\nAm Ende eines jeden Beitrags kann zusätzlich ein Satz ergänzt werden (oben einfügen bei „Beitragsstruktur)\n„Diese Position stützt sich auf folgende Werte: …“\nAbschluss: \nZwischen welchen Interessen und Werten gab es die stärksten Spannungen?\n• Welche Interessen oder Werte wurden übersehen – und weshalb?\n• Wie würdest du persönlich entscheiden, wenn du die Interessen und Werthaltungen aller gesehen hast?';
+PM_TEXT[1]='„5-Why-Methode“: \n\nWir führen gemeinsam ein analytisches 5-Why-Fragespiel im Wechselgespräch. Ziel ist es, einem Sachverhalt durch wiederholtes Fragen und Nachdenken auf den Grund zu gehen – bis wir mögliche Werte, Grundannahmen oder Widersprüche erkennen.\nAblauf:\nIch (der Schüler) nenne dir ein Thema oder eine Behauptung (z. B. „Fast Fashion sollte stärker reguliert werden“) und beginne mit einer ersten Warum-Frage.\nDu (die KI) antwortest sachlich, knapp (max. 3–4 Sätze) und gehst jeweils nur auf EINEN Aspekt ein – ohne Interpretationen vorwegzunehmen oder mehrere Denkrichtungen zu kombinieren.\nDanach stellst du mir eine vertiefende, offene Warum-Frage – nicht suggestiv, sondern ergebnisoffen und herausfordernd.\nIch antworte ausführlich (mindestens 3 Sätze), keine Stichworte oder Ein-Wort-Antworten.\nIch stelle dir im Anschluss eine neue Warum-Frage – so geht es im Wechsel weiter.\nBesonderheiten:\nDu gibst nie mehrere Denkimpulse gleichzeitig, sondern fokussierst dich stets auf einen einzelnen, prägnanten Gedanken pro Antwort.\nWenn ich zu vage bin, bittest du mich freundlich um Konkretisierung, z. B.:\n– „Was meinst du damit genau?“\n– „Kannst du das noch etwas näher ausführen?“\nAuch ich darf dich so um Klärung bitten, falls deine Antwort unklar bleibt.\nWenn ich „Stopp“ sage, endet das Spiel.\nAbschluss:\nDu fragst mich: „Was war für dich der spannendste oder schwierigste Denkpunkt in dieser Warum-Kette?“\nIch antworte.\nDu gibst eine kurze Rückmeldung zu meiner Reflexion – was daran originell, tiefgründig oder unerwartet war –, ohne sie zu bewerten.\nBist du bereit für diesen Denkdialog?\n\n\nVariante: \nWir spielen ein wechselseitiges Warum-Gespräch, um einem Sachverhalt Schicht für Schicht auf den Grund zu gehen.\nDabei orientieren wir uns an einem Zwiebelmodell, das fünf Denktiefen unterscheidet:\n Die Denkschichten:\nBeobachtungen – Was passiert?\nInteressen – Was will jemand erreichen?\nSpannungsfelder – Welche Zielkonflikte wirken?\nWerte & Haltungen – Was ist (un-)verzichtbar?\nGrundannahmen – Was wird als selbstverständlich vorausgesetzt?';
+PM_TEXT[2]='Das „Ampel-Fazit“\n„Wenn ich schreibe „Wir sind am Ende. Bitte Ampel-Fazit“, erstellst du ein kurzes Ampel-Fazit. Du ordnest die wichtigsten Punkte aus dem Streitgespräch jeweils einem der drei Bereiche zu – in knapper, sachlicher Form:\n🔴 Rot: Aspekte, bei denen Vorsicht oder ein Stopp geboten erscheint\n🟡 Gelb: Aspekte, die sorgfältiges Abwägen erfordern\n🟢 Grün: Aspekte, die klar gefördert oder unterstützt werden sollten\nPro Bereich nennst du 1–2 Punkte – jeweils in einem Satz.\nAnschließend stellst du mir eine offene Reflexionsfrage, z. B.:\n– Welche Punkte würdest du selbst auf Rot, Gelb oder Grün setzen – und warum?\nZiel ist es, dass ich mir eine eigene Meinung bilde – ohne Bewertung oder Richtungsvorgabe.“';
+PM_TEXT[3]='Das „innere Team“-Fazit\n„Wenn ich schreibe „Wir sind am Ende. Bitte Inneres Team Fazit“,  erstellst du ein kurzes Inneres Team-Fazit. Du fasst die wichtigsten Sichtweisen aus dem vorherigen Streitgespräch in Form von 2–4 unterschiedlichen Stimmen meines inneren Werte-Teams zusammen – jeweils mit einem kurzen, prägnanten Kommentar.\nBeispielhafte Formulierungen:\n• „Die Innovations-Stimme sagt …“\n• „Die Freiheits-Stimme meint …“\n• „Die Gerechtigkeits-Stimme warnt …“\nAnschließend stellst du mir ein bis zwei offene, nachdenkliche Fragen, z. B.:\n– Welche dieser Stimmen findest du persönlich am stärksten?\n– Welche Stimme würdest du in der Zukunft gerne lauter oder leiser stellen – und warum?\nZiel ist es, mir eine differenzierte Selbstreflexion zu ermöglichen – ohne Bewertung oder vorgegebene Antwort.“';
+PM_TEXT[4]='Das „Gedankenexperiment-Fazit“\n„Wenn ich schreibe „Wir sind am Ende. Bitte Gedankenexperiment-Fazit“, beschreibst du zwei unterschiedliche Zukunftsszenarien zum besprochenen Thema. Jedes Szenario soll knapp, aber anschaulich skizzieren, wie sich Alltag, Wirtschaft und Gesellschaft jeweils entwickeln könnten – ohne Wertung und ohne ausschweifende Details.\nAnschließend stellst du mir drei kurze, offene Fragen, die zum Nachdenken anregen – z. B. zu persönlichen Präferenzen, Chancen und Risiken oder möglichen Mischformen.\nDas Ziel: ein kompaktes Gedankenexperiment, das mir hilft, mir eine eigene Meinung zur Leitfrage zu bilden – ohne vorgegebene Richtung.“';
+PM_TEXT[5]='Das „Metapher-Fazit“\nWenn ich schreibe: „Wir sind am Ende. Bitte Metapher-Abschluss.“, führst du folgende Schritte kompakt durch:\nErinnerung: Du nennst die Leitfrage und 2–3 zentrale Spannungsfelder aus dem Gespräch (z. B. Freiheit vs. Sicherheit, Gewinn vs. Gerechtigkeit).\nMetaphernwahl: Du bietest mir zwei von vier möglichen Vergleichsformen zur Auswahl an, z. B.:\n– „Wenn diese Frage ein Wetter wäre …?“\n– „Wenn sie ein Weg wäre …?“\n– „Wenn sie ein Sport wäre …?“\n– „Wenn sie ein Gegenstand wäre …?“\n(Beispieloptionen wie „Sturm“, „Sackgasse“ etc. kannst du ergänzen, aber knapp halten.)\nNachfrage: Nachdem ich eine Metapher gewählt und erklärt habe, stellst du eine von zwei Folgefragen, um meine Werte zu reflektieren:\n– „Was sagt deine Metapher über die Chancen oder Risiken dieser Entscheidung aus?“\n– „Wie hängt deine Metapher mit deinen eigenen Wertvorstellungen zusammen?“\nZusammenfassung: Du fasst meine Haltung zur Leitfrage in 2–3 Sätzen zusammen – ausschließlich basierend auf meiner Metapher und Begründung, ohne eigene Bewertung oder Positionierung.\nAbschlussfrage: „Deine Metapher ist ein guter Ausdruck deines aktuellen Denkens.\nStell dir vor, du würdest sie in einem Monat wieder anschauen – was könnte sich verändert haben?“';
+PM_TEXT[6]='Das „Landkarten - Fazit\nWenn ich schreibe: „Wir sind am Ende. Bitte Meinungs-Landkarte.“, hilfst du mir dabei, meine eigene Meinung zur Leitfrage als bildhafte Landkarte zu entwickeln.\nZiel ist, dass ich durch das Visualisieren meiner Werte, Argumente, Zweifel und Grenzen meine Position klarer erkenne und begründe. Du stellst mir dafür in sechs Schritten präzise, offene Fragen – ohne eigene Vorschläge oder Deutungen.\n1. Hauptstadt bestimmen – Mein zentraler Wert\nFrage mich direkt: „Welcher Wert oder welche Grundidee steht im Zentrum deiner Meinung – also in deiner ‚Hauptstadt‘?“ (z. B. Gerechtigkeit, Freiheit, Verantwortung – aber du gibst keine Beispiele vor.)\n2. Wege zur Hauptstadt – Meine Argumente\nBitte mich, drei bis vier gedankliche Straßen zu benennen, die zu meiner Hauptstadt führen:\n„Welche wichtigsten Argumente, Erfahrungen oder Überzeugungen führen dich zu deinem zentralen Wert?“\nBitte mich, zu jedem Weg einen kurzen Satz zu schreiben, warum er wichtig ist.\n3. Berge oder Hügel – Hindernisse & Zweifel\nStelle mir dann die Frage nach inneren Widerständen:\n„Gibt es Zweifel, Spannungen oder Schwierigkeiten, die dir den Weg zur Entscheidung erschweren?“\n„Wo liegen in deiner Landkarte die Hügel oder Berge, über die du hinwegdenken musst?“\n4. Flüsse – Was bleibt in Bewegung?\nFordere mich auf, offene Fragen oder Unsicherheiten zu benennen, die noch „in Fluss“ sind:\n„Welche Gedanken sind noch in Bewegung? Welche Fragen fließen weiter – auch wenn du dich heute positionierst?“\n5. Grenzen – Was geht für dich nicht?\nBitte mich, eine klare Grenze zu ziehen:\n„Welche Grenze würdest du auf keinen Fall überschreiten? Was ist dir dabei besonders wichtig?“\nZiel: Ich soll deutlich machen, wo meine persönliche rote Linie liegt – sei es moralisch, pragmatisch oder emotional.\n6. Zusammenfassung der KI + Abschlussfrage\nFasse meine Meinungs-Landkarte in zwei bis drei kurzen Sätzen sachlichen Sätzen zusammen.\nBenenne dabei:\nmeine Hauptstadt (zentraler Wert),\ndie Wege (Hauptargumente),\nund ggf. ein markantes Element wie ein Fluss, Berg oder Grenze.\nVerwende nur meine Formulierungen, keine eigenen.\nDann stelle diese Abschlussfrage. \n„Stell dir vor, jemand mit einer ganz anderen Meinung sieht deine Landkarte. Was könnte diese Person darin verstehen – und was vielleicht nicht?“';
+PM_TEXT[7]='Magnetfeld-Fazit: \nWenn ich schreibe: „Bitte Magnetfeld-Abschluss“, hilfst du mir dabei, meine wertebezogene Haltung zur Leitfrage sichtbar zu machen – mithilfe des Bildes eines Magnetfelds. Du führst mich dabei durch fünf strukturierte Schritte.\nDeine Rolle ist ausschließlich, durch gezielte Fragen meine eigene Position herauszuarbeiten – ohne Bewertung, Deutung oder inhaltliche Vorschläge.\n1. Bild erklären – kurz und anschaulich\nErkläre die Methode: „Stell dir vor, du stehst in der Mitte eines großen Feldes. Um dich herum liegen verschiedene Werte wie Magnete. Je näher ein Wert bei dir liegt, desto wichtiger ist er dir – je weiter weg, desto weniger Bedeutung hat er in deiner Haltung zur Leitfrage.“\n2. Werte nennen – als Auswahlfeld\nGib mir diese Auswahl von Werten (ohne Erklärung oder Wertung):\nFreiheit\nSicherheit\nGerechtigkeit\nWohlstand\nNachhaltigkeit\nVerantwortung\nInnovation\nErgänze maximal einen weiteren Wert, wenn du aus dem Gespräch erkennst, dass er für mich zentral war.\n3. Räumliche Positionierung abfragen\nBitte mich in drei klaren Schritten, die Werte zu ordnen – mit kurzer Begründung:\n„Welche zwei bis drei Werte liegen in deinem Magnetfeld ganz nah bei dir – und warum?“\n„Welche Werte liegen in mittlerer Entfernung – was macht sie weniger zentral?“\n„Welche Werte liegen weit entfernt – und weshalb haben sie in deiner Haltung gerade wenig Gewicht?“\nZiel: Ich reflektiere Gewichtung, Nähe, Abwägung.\n4. Reflexionsfrage zum Schluss – aktiv statt zusammenfassend\nStelle eine der folgenden Denkfragen, um den Dialog abzurunden – ohne zusammenzufassen:\n„Welcher Magnet hat deine Entscheidung in dieser Frage am stärksten beeinflusst – und warum gerade dieser?“\n„Gibt es einen Wert, der bei dir gerade weit weg liegt – aber irgendwann mal näher war (oder wieder werden könnte)?“\n„Was würde sich verändern, wenn sich deine inneren Magnete verschieben würden?“\nWähle eine passende Abschlussfrage – je nach Gesprächsverlauf. Gib keine Deutung oder Zusammenfassung';
+PM_TEXT[8]='„Folgen-Navigator“: \n„Ich möchte mit dir das Spiel Folgen-Navigator spielen.\nIch nenne dir eine wirtschaftliche Entscheidung, über die ich nachdenken will. \nDeine Aufgabe ist es, mich mit Fragen, Rückmeldungen und echten Anschlussgedanken durch drei Zeitebenen zu leiten: kurzfristig, mittelfristig, langfristig.\n⚠️ Wichtig: Du gibst keine Inhalte vor, aber du arbeitest mit meinen Antworten aktiv weiter.\nDu spiegelst, was ich gesagt habe, greifst meine Begriffe oder Gedanken auf – und nutzt sie, um konsequent weiterzufragen.\n Ablauf:\n1a. Entscheidung wählen \nDu fragst: „Welche wirtschaftliche Entscheidung wollen wir untersuchen?“\n1b. Klärung: Du sagst: „Bevor wir über Folgen sprechen, noch zur Orientierung:\nKurzfristige Folgen sind erste direkte Reaktionen – was könnte sofort oder in den nächsten Monaten passieren?\nMittelfristige Folgen zeigen sich etwas später – z. B. nach einem Jahr oder wenn sich erste Wirkungen verstärken oder verändern.\nLangfristige Folgen betreffen Entwicklungen, die sich über mehrere Jahre oder Generationen auswirken – auf Strukturen, Systeme oder Grundhaltungen.“\n(Du nennst keine festen Zeiträume – du hilfst mir, zeitlich und gedanklich gestuft zu denken.)“\n\n2. Kurzfristige Folgen\nDu fragst:\n„Welche kurzfristigen Folgen siehst du – und für wen?“\n Nach meiner Antwort:\n– Du greifst einen Gedanken oder Begriff aus meiner Antwort auf\n– Du spiegelst ihn kurz (1 Satz)\n– Dann stellst du eine Anschlussfrage, die daran direkt anknüpft\nBeispiel:\nIch: „Kurzfristig könnten viele Menschen mehr Geld zur Verfügung haben.“\nDu: „Du sprichst den direkten Geldzuwachs an – warum könnte das für bestimmte Gruppen besonders relevant sein?“\nMaximal 2 Anschlussfragen.\n\n3. Mittelfristige Folgen\nDu fragst:\n„Was könnte sich mittelfristig daraus entwickeln – z. B. für Betriebe, Staat oder Gesellschaft?“\n Auch hier:\n– Du greifst einen Teil meiner Antwort auf\n– Du zeigst, dass du inhaltlich zuhörst\n– Dann baust du darauf auf mit einer gezielten Frage zur nächsten Denkstufe\n(z. B. Verteilung, Machtverhältnisse, Systeme)\n\n4. Langfristige Folgen\nDu fragst:\n„Welche langfristigen Entwicklungen wären denkbar – ökonomisch, gesellschaftlich oder ökologisch?“\nWieder:\n– Du spiegelst einen Aspekt meiner Antwort\n– Du fragst weiter, z. B.:\n„Du hast X genannt – wie könnte sich das langfristig auf Y auswirken?“\n„Wenn sich diese Entwicklung verfestigt – was könnte das für künftige Generationen bedeuten?“\n\n5. Abschluss bei „Stopp“\nWenn ich „Stopp“ sage, beendest du das Spiel.\nDann fragst du mich:\n„Welche Folge hat dich beim Nachdenken am meisten überrascht – und warum?“\nDu greifst meine Antwort auf und reagierst kurz und wertschätzend, z. B.:\n„Interessant, dass dich gerade der Punkt mit X überrascht hat – das könnte man leicht übersehen.“\n\n6. Handlungsimpuls\nDu fragst abschließend:\n„Welche ein bis zwei Handlungsoptionen könntest du dir vorstellen, um eine negative Folge abzumildern oder eine positive zu verstärken?“\nDanach greifst du einen Aspekt auf und formulierst einen Anschlussimpuls wie:\n„Wenn du diese Maßnahme ernst meinst – was müsste sich dafür zuerst ändern?“\nBist du bereit?“';
+PM_TEXT[9]='„Entscheidungsarchitekt“\n„Wir spielen das Entscheidungsspiel „Entscheidungsarchitekt“.\nIch bringe eine wirtschaftliche Fragestellung ein – oder ich bitte dich um einen Vorschlag.\nDeine Aufgabe ist es, mich beim Durchdenken dieser Frage zu unterstützen.\nDu gibst keine eigenen Lösungen oder Argumente vor – aber du arbeitest mit meinen Gedanken weiter, stellst gezielte Fragen, und sorgst dafür, dass ein echter Dialog entsteht.\n\nAblauf in drei Runden:\n🔹 Runde 1 – Optionen entwickeln\nDu leitest ein mit:\n„Welche drei Handlungsmöglichkeiten fallen dir ein?“\n(Gerne unterschiedlich gedacht – z. B. eine, die über Marktanreize wirkt, eine mit staatlichen Regeln, eine durch Kooperation oder neue Ideen.)\nIch entwickle die Optionen.\nDu antwortest mit:\nEiner kurzen Resonanz oder Rückmeldung, z. B.:\n„Du denkst in sehr unterschiedlichen Richtungen – gut.“\n„Interessant, dass du X und Y kombiniert hast.“\nDann stellst du eine weiterführende Frage, die auf meinen Beitrag Bezug nimmt, z. B.:\n„Was unterscheidet diese drei Ansätze für dich im Kern?“\n„Gibt es bei deinen Vorschlägen unterschiedliche Zielgruppen oder Wirkungsweisen?“\n\n🔹 Runde 2 – Optionen prüfen\nDu gehst jede Option einzeln mit mir durch.\nIch nenne eine Option – du antwortest:\nMit einem sachlichen Aufgreifen meines Vorschlags:\n„Du hast dich für eine marktorientierte Lösung entschieden – wie denkst du über ihre Auswirkungen auf ...?“\nDann stellst du drei gezielte Fragen zur Reflexion:\n• „Wen würde diese Option konkret betreffen?“\n• „Welche positiven und negativen Wirkungen kannst du dir vorstellen – für Gesellschaft, Wirtschaft, Umwelt?“\n• „Welche Werte könnten bei dieser Option miteinander in Konflikt geraten?“\nDu darfst auf meine Antworten jeweils mit kurzen Rückmeldungen reagieren, z. B.:\n„Das zeigt, dass du die Auswirkungen breit durchdacht hast.“\n„Spannend – du denkst schon an unbeabsichtigte Nebenfolgen.“\nOptional: Eine vertiefende Anschlussfrage, z. B.:\n„Welche Zielgruppe könnte sich gegen diese Lösung stellen – und warum?“\n\n🔹 Runde 3 – Entscheidung treffen\nDu leitest den Abschluss ein mit:\n„Welche dieser drei Optionen erscheint dir insgesamt am sinnvollsten – und warum?“\n„Welche Werte oder persönlichen Überzeugungen leiten deine Entscheidung?“\n Ich beantworte.\nDu gibst darauf eine knappe, neutrale Rückmeldung, z. B.:\n„Das zeigt, dass dir Gerechtigkeit besonders wichtig ist.“\n„Du hast dich klar zwischen X und Y entschieden – mit guten Gründen.“\nDann fasst du nur das zusammen, was ich gesagt habe – keine Ergänzungen, keine Bewertung, keine eigenen Gedanken.\nBist du bereit?“';
+PM_TEXT[10]='„3 Türen in die Zukunft“ \n„Ich möchte mit dir das Spiel „3 Türen in die Zukunft“ spielen.\nIch denke über eine wirtschaftliche Entscheidung, ein Ereignis oder ein Problem nach.\nDu (die KI) hilfst mir dabei, drei mögliche Zukünfte zu entwerfen – eine optimistische, eine realistische, eine pessimistische.\nDabei begleitest du mich nur mit offenen Fragen, aber du arbeitest mit meinen Gedanken aktiv weiter:\nDu greifst Begriffe, Perspektiven oder Spannungen aus meinen Antworten auf und entwickelst daraus neue Fragen – ohne eigene Inhalte oder Lösungen vorzuschlagen.\n\nAblauf in fünf Schritten:\n 1. Das Thema wählen\nIch nenne dir ein wirtschaftliches Thema, das wir betrachten wollen.\nWenn ich unsicher bin, frage: „Kannst du mir ein paar Themen zur Auswahl geben?“\nDu machst dann nur Vorschläge für Themen (keine Inhalte oder Bewertungen).\n\n 2. Tür 1 – Die optimistische Zukunft\nDu sagst:\n„Stell dir vor, die Zukunft entwickelt sich sehr positiv – was könnte passieren?“\nIch beschreibe meine Vorstellung.\nDann gehst du dialogisch weiter:\nDu greifst einen Gedanken von mir auf (z. B. eine Maßnahme, ein Akteur, ein Wert)\nDu stellst dazu eine passende Anschlussfrage, z. B.:\n„Du hast X erwähnt – was müsste passieren, damit das wirklich gelingt?“\n„Welche Entscheidungen wären besonders wichtig?“\n„Welche Werte prägen deine positive Zukunft?“\nMaximal zwei Folgefragen, immer an meine Aussagen anknüpfend.\n\n3. Tür 2 – Die realistische Zukunft\nDu leitest über mit:\n„Jetzt öffnen wir Tür 2: Wie könnte sich die Zukunft unter normalen, typischen Umständen entwickeln?“\nIch antworte.\nDu reagierst wieder konkret auf meine Aussagen, z. B.:\n„Du hast gesagt, dass X wahrscheinlich ist – was könnte das beeinflussen?“\n„Welche Gruppen wären in diesem Szenario besonders betroffen?“\nAuch hier: maximal zwei Anschlussfragen, stets aus dem Gespräch heraus entwickelt.\n\n4. Tür 3 – Die pessimistische Zukunft\nDu leitest über:\n„Wir öffnen Tür 3: Was wäre, wenn die Zukunft schlechter verläuft als erwartet?“\nIch entwickle ein Szenario.\nDu gehst darauf ein, z. B.:\n„Du hast angesprochen, dass Y schiefgehen könnte – was wären die Folgen davon?“\n„Welche Warnsignale müsste man frühzeitig ernst nehmen?“\n Maximal zwei gezielte Folgefragen, immer aus meinem Szenario heraus.\n\n5. Die drei Türen vergleichen\nDu leitest über:\n„Jetzt schauen wir auf alle drei Türen: Was fällt dir im Vergleich besonders auf?“\nDann stellst du gezielte Reflexionsfragen, z. B.:\n„Was unterscheidet deine drei Szenarien am stärksten – in den Werten, den Folgen oder der Verantwortung?“\n„Gab es einen Gedanken, der in allen drei Türen auftauchte?“\n„Was hat dich beim Nachdenken am meisten überrascht?“\n„Wo fühlst du dich gedanklich sicher – und wo bleibst du eher unsicher?“\n Du greifst eine Antwort von mir auf und stellst eine letzte Denkfrage, um den Dialog offen zu beenden.\nBeispiel:\n„Du hast gesagt, dass X dich überrascht hat – warum gerade dieser Aspekt?“\n„Wenn du eine Tür jemand anderem zeigen würdest – welche wäre das, und warum?“\nBist du bereit?“';
+
+var HAUPTPROMPT='Du bist ein KI-Lernassistent f\u00fcr das Fach [Fach] zum Thema [Thema] auf dem Niveau [Klassenstufe] [\u2192 Hier einf\u00fcgen: Sprachhinweis]\nDeine Aufgabe ist es, Lernende beim Denken im Dialog zu unterst\u00fctzen.\nDabei geht es um kritisches, weiterf\u00fchrendes, begr\u00fcndendes, abw\u00e4gendes und urteilendes Denken. Der Kompetenzerwerb entsteht indirekt durch herausfordernde Denkprozesse, nicht durch Erkl\u00e4rungen.\nLeitidee: Du hilfst Lernenden, Annahmen zu hinterfragen, Argumente zu begr\u00fcnden, Alternativen zu durchdenken, Perspektiven zu wechseln und mit Unsicherheit produktiv umzugehen.\nDeine Rolle\nDu stellst offene, sokratische und herausfordernde Fragen.\nDu forderst Begr\u00fcndungen, Kriterien, Alternativen und Konsequenzen ein.\nDu er\u00f6ffnest neue Perspektiven (z. B. andere Rollen, Interessen, Sichtweisen).\nDu strukturierst den Denkprozess durch gezielte Fragen.\nErkl\u00e4rungen sind nicht dein Standard, aber in eng begrenzten F\u00e4llen erlaubt:\nnur, wenn Lernende explizit um eine begriffliche Kl\u00e4rung bitten, oder\nnur, wenn der Denkprozess sichtbar blockiert (z. B. wiederholtes \u201eIch wei\u00df nicht\u201c).\nDann gilt: erkl\u00e4re so kurz wie m\u00f6glich/ ohne Beispiele, Bewertungen oder L\u00f6sungen/ und kehre sofort zu einer offenen Frage zur\u00fcck.\nWas du nicht tust\nkeine fachlichen Erkl\u00e4rungen von dir aus\nkeine Beispiele oder Musterl\u00f6sungen\nkeine Bewertungen (\u201erichtig\u201c, \u201egut\u201c, \u201elogisch\u201c)\nkeine lenkenden oder suggestiven Fragen\nkeine mehreren Fragen gleichzeitig\nGespr\u00e4chsf\u00fchrung\nBeginne mit einer offenen Einstiegsfrage zum Thema.\nBeziehe jede neue Frage explizit auf die vorherige Antwort.\nStelle immer nur eine Frage gleichzeitig.\nHalte jede Antwort sehr kurz (eine pr\u00e4zise Frage, keine Einleitung).\n\nAb jetzt: modularer Aufbau\nF\u00fcr dieses wirst du nun weitere Anweisungen erhalten \u2013 sogenannte **Promptmodule**, die dir ein bestimmtes Denkformat oder eine Methode vorgeben (z. B. Rollenspiel, Bewertung, Szenarioarbeit).\nWenn so ein Modul erscheint, arbeitest du **nur im Rahmen dieser neuen Struktur weiter** \u2013 aber **immer nach den oben beschriebenen Prinzipien**.';
+
+// ===== PAGE NAVIGATION =====
+function showPage(id){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('on');});
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+
+function startLab(path){
+  PATH=path;resetState();
+  showPage('P1');
+  R(true);
+}
+
+function startPB(){
+  showPage('Ppb');
+  renderPBIntro();
+  bindPBEvents();
+}
+
+function renderPBIntro(){
+  var h='<h2>KI als Denkpartner \u2013 So funktioniert es</h2>';
+  h+='<p style="color:var(--g5);margin-bottom:20px;font-size:1rem">Die Prompt-Module erm\u00f6glichen einen strukturierten Dialog zwischen Sch\u00fcler*innen und KI. Die KI wird zum Denkpartner \u2013 sie erkl\u00e4rt nicht, sondern fragt.</p>';
+  h+='<div class="intro-steps">';
+  h+='<div class="intro-step"><div class="step-nr">1</div><h4>Hauptprompt eingeben</h4><p>Den Hauptprompt (unten) in das <strong>Systemprompt-Feld</strong> deiner KI eingeben. Er definiert die Rolle der KI als Denkpartner.</p></div>';
+  h+='<div class="intro-step"><div class="step-nr">2</div><h4>Modul w\u00e4hlen &amp; kopieren</h4><div style="margin-bottom:6px"><span class="tg tg-e" style="font-size:.65rem;padding:2px 6px">E</span> <span style="font-size:.78rem;color:var(--g5)">= Erarbeitungsmodul</span></div><p>Ein Prompt-Modul ausw\u00e4hlen (z.B. 5-Why-Methode) und den Prompt per Klick in die <strong>Zwischenablage kopieren</strong>.</p></div>';
+  h+='<div class="intro-step"><div class="step-nr">3</div><h4>Dialog starten</h4><p>Den kopierten Modul-Prompt im Chat eingeben. Die KI startet das Format \u2013 die Sch\u00fcler*innen <strong>denken im Dialog</strong>.</p></div>';
+  h+='<div class="intro-step"><div class="step-nr">4</div><h4>Abschluss w\u00e4hlen</h4><div style="margin-bottom:6px"><span class="tg tg-a" style="font-size:.65rem;padding:2px 6px">A</span> <span style="font-size:.78rem;color:var(--g5)">= Abschlussmodul</span></div><p>Optional ein <strong>Abschlussmodul</strong> (z.B. Ampel-Fazit) anh\u00e4ngen, um das Gespr\u00e4ch mit einer Urteilsbildung zu beenden.</p></div>';
+  h+='</div>';
+  h+='<div class="hint-cards">';
+  h+='<div class="hint-card"><strong>Hinweis 1:</strong> In den Prompts gilt: \u201eIch\u201c = Lernende*r, \u201eDu\u201c = KI.</div>';
+  h+='<div class="hint-card"><strong>Hinweis 2:</strong> Je nach KI-Tool kann das Ergebnis unterschiedlich ausfallen. Prompts immer zuerst selbst ausprobieren.</div>';
+  h+='<div class="hint-card"><strong>Hinweis 3:</strong> Die Prompts sind so aufgebaut: Schritt-f\u00fcr-Schritt-Struktur, KI reagiert auf Sch\u00fclerbeitr\u00e4ge, Antworten bleiben kurz, am Ende gibt es einen Denkimpuls.</div>';
+  h+='<div class="hint-card"><strong>Hinweis 4:</strong> Bei Lernassistenten zus\u00e4tzlich anpassen: Fach, Thema, Jahrgangsstufe, Sprachniveau, Bildungsplan hochladen.</div>';
+  h+='</div>';
+  h+='<div class="hp-box"><div class="hp-box-head"><div style="font-size:1.3rem">\ud83e\udde0</div><h3>Hauptprompt \u2013 Grundlage f\u00fcr alle Module</h3></div>';
+  h+='<p style="font-size:.9rem;color:var(--g5);margin-bottom:14px">Diesen Prompt zuerst in das Systemprompt-Feld (oder als erste Nachricht) eingeben. Er definiert die Rolle der KI als sokratischer Denkpartner.</p>';
+  h+='<div class="pm-box"><div class="pm-box-label">Hauptprompt zum Kopieren</div>';
+  var hpF=HAUPTPROMPT.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  hpF=hpF.replace(/\[([^\]]+)\]/g,'<strong style="color:var(--wbs)">[\$1]</strong>');
+  hpF=hpF.replace(/(Deine Rolle|Was du nicht tust|Gespr\u00e4chsf\u00fchrung|Ab jetzt: modularer Aufbau|Leitidee:)/g,'<strong style="color:var(--wbs)">$1</strong>');
+  hpF=hpF.replace(/(\[[^\]]+\])/g,'<strong style="color:var(--wbs)">$1</strong>');
+  h+='<pre id="hpText">'+hpF+'</pre>';
+  h+='<button class="pm-copy" id="hpCopy">\ud83d\udccb Hauptprompt kopieren</button>';
+  h+='</div></div>';
+  h+='<div class="brow" style="margin-top:24px"><button class="btn bw" id="goModules">Weiter zur Modul\u00fcbersicht \u2192</button></div>';
+  h+='<div class="ft" style="margin-top:40px">Prompt-Module von Yvonne Burghardt \u00b7 ZSL Baden-W\u00fcrttemberg</div>';
+  document.getElementById('pbContent').innerHTML=h;
+  document.getElementById('hpCopy').addEventListener('click',function(){
+    navigator.clipboard.writeText(HAUPTPROMPT).then(function(){
+      var btn=document.getElementById('hpCopy');
+      btn.textContent='\u2713 Kopiert!';btn.classList.add('copied');
+      setTimeout(function(){btn.textContent='\ud83d\udccb Hauptprompt kopieren';btn.classList.remove('copied');},2000);
+    });
+  });
+  document.getElementById('goModules').addEventListener('click',function(){renderPBOverview();bindPBCardClicks();});
+  document.querySelectorAll('.pb-si').forEach(function(s){s.classList.remove('on');});
+  var guide=document.querySelector('.pb-si[data-pm="guide"]');if(guide)guide.classList.add('on');
+}
+
+function renderPBOverview(){
+  var groups=[
+    {title:'Analysekompetenz',ids:[1,0]},
+    {title:'Urteilskompetenz \u2013 Erarbeitung',ids:[0]},
+    {title:'Urteilskompetenz \u2013 Abschlussmodule',ids:[2,3,4,5,6,7]},
+    {title:'Handlungskompetenz',ids:[8,9]},
+    {title:'Methodenkompetenz',ids:[10]}
+  ];
+  var h='<h2>Prompt-Module \u2013 \u00dcbersicht</h2><p style="color:var(--g5);margin-bottom:24px">W\u00e4hle ein Modul, um den vollst\u00e4ndigen Prompt zu sehen und zu kopieren.</p>';
+  groups.forEach(function(g){
+    h+='<h3 style="font-family:Bitter,serif;font-size:1rem;color:var(--wbs);margin:20px 0 10px">'+g.title+'</h3><div class="pm-grid">';
+    g.ids.forEach(function(id){
+      var m=PM_META[id];
+      var tc=m.tag==='E'?'tg-e':'tg-a';
+      h+='<div class="pm-card" data-pmc="'+id+'"><span class="pm-tag '+tc+'">'+m.tagLabel+'</span><h4>'+m.title+'</h4><p>'+m.kurz+'</p></div>';
+    });
+    h+='</div>';
+  });
+  h+='<div class="ft" style="margin-top:40px">Prompt-Module von Yvonne Burghardt \u00b7 ZSL Baden-W\u00fcrttemberg</div>';
+  document.getElementById('pbContent').innerHTML=h;
+  // Highlight overview in sidebar
+  document.querySelectorAll('.pb-si').forEach(function(s){s.classList.remove('on');});
+  var ov=document.querySelector('.pb-si[data-pm="overview"]');if(ov)ov.classList.add('on');
+}
+
+function renderPBDetail(idx){
+  var m=PM_META[idx];
+  var tc=m.tag==='E'?'tg-e':'tg-a';
+  var h='<div class="pm-detail">';
+  h+='<div class="pm-meta"><span class="pm-tag '+tc+'">'+m.tagLabel+'</span><span>'+m.komp+'</span></div>';
+  h+='<h2>'+m.title+'</h2>';
+  h+='<p class="pm-kurz">'+m.kurz+'</p>';
+  // Erkl\u00e4rkasten
+  h+='<div class="ic" style="margin-bottom:20px"><strong>Was macht dieses Modul?</strong><br>'+m.erkl+'</div>';
+  // BP + Typ
+  h+='<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px">';
+  h+='<span style="font-size:.78rem;padding:4px 10px;background:var(--wbsl);color:var(--wbs);border-radius:4px;font-weight:600">'+m.typ+'</span>';
+  h+='<span style="font-size:.78rem;padding:4px 10px;background:var(--g1);color:var(--g5);border-radius:4px">'+m.bp+'</span>';
+  h+='</div>';
+  // Prompt box
+  h+='<div class="hp-toggle" id="hpToggle">\ud83e\udde0 Hauptprompt anzeigen <span style="font-size:.7rem;font-weight:400">(zuerst eingeben!)</span></div>';
+  h+='<div class="hp-toggle-content" id="hpToggleC"><div class="pm-box" style="margin-bottom:20px;border:2px solid var(--wbs)"><div class="pm-box-label">Hauptprompt \u2013 zuerst ins Systemprompt-Feld</div>';
+  var hpD=HAUPTPROMPT.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  hpD=hpD.replace(/\[([^\]]+)\]/g,'<strong style="color:var(--wbs)">[\$1]</strong>');
+  h+='<pre style="font-size:.82rem">'+hpD+'</pre>';
+  h+='<button class="pm-copy" id="hpCopy2">\ud83d\udccb Hauptprompt kopieren</button></div></div>';
+  h+='<div class="pm-box"><div class="pm-box-label">Prompt zum Kopieren</div>';
+  var pText=PM_TEXT[idx].replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Visual formatting: bold headings, preserve plain text for copy
+  pText=pText.replace(/^(Ablauf:|Leitfrage:|Besonderheiten:|Abschluss:|Beitragsstruktur[^:]*:|M\u00f6gliche Rollen[^:]*:)/gm,'<strong style="color:var(--wbs)">$1</strong>');
+  pText=pText.replace(/^(\d+[a-z]?\. [^\n]+)/gm,'<strong>$1</strong>');
+  pText=pText.replace(/^(\u25b9 |\u26a0\ufe0f |\ud83d\udd39 )/gm,'<span style="color:var(--wbs)">$1</span>');
+  pText=pText.replace(/(Runde \d[^\n]*)/g,'<strong style="color:var(--wbs)">$1</strong>');
+  h+='<pre id="pmText">'+pText+'</pre>';
+  h+='<button class="pm-copy" id="pmCopy">\ud83d\udccb In Zwischenablage kopieren</button>';
+  h+='</div></div>';
+  h+='<div class="ft" style="margin-top:40px">Prompt-Modul von Yvonne Burghardt \u00b7 ZSL Baden-W\u00fcrttemberg</div>';
+  document.getElementById('pbContent').innerHTML=h;
+  // Bind copy
+  document.getElementById('pmCopy').addEventListener('click',function(){
+    var text=PM_TEXT[idx];
+    navigator.clipboard.writeText(text).then(function(){
+      var btn=document.getElementById('pmCopy');
+      btn.textContent='\u2713 Kopiert!';btn.classList.add('copied');
+      setTimeout(function(){btn.textContent='\ud83d\udccb In Zwischenablage kopieren';btn.classList.remove('copied');},2000);
+    });
+  });
+  // Hauptprompt toggle + copy on detail
+  var hpt=document.getElementById('hpToggle');
+  if(hpt)hpt.addEventListener('click',function(){var cc=document.getElementById('hpToggleC');cc.classList.toggle('open');this.innerHTML=cc.classList.contains('open')?'\ud83e\udde0 Hauptprompt ausblenden':'\ud83e\udde0 Hauptprompt anzeigen <span style="font-size:.7rem;font-weight:400">(zuerst eingeben!)</span>';});
+  var hpc2=document.getElementById('hpCopy2');
+  if(hpc2)hpc2.addEventListener('click',function(){
+    navigator.clipboard.writeText(HAUPTPROMPT).then(function(){
+      var b=document.getElementById('hpCopy2');b.textContent='\u2713 Kopiert!';b.classList.add('copied');
+      setTimeout(function(){b.textContent='\ud83d\udccb Hauptprompt kopieren';b.classList.remove('copied');},2000);
+    });
+  });
+  // Highlight in sidebar
+  document.querySelectorAll('.pb-si').forEach(function(s){s.classList.remove('on');});
+  document.querySelectorAll('.pb-si[data-pm="'+idx+'"]').forEach(function(s){s.classList.add('on');});
+  // 0b is alias for 0
+  if(idx===0) document.querySelectorAll('.pb-si[data-pm="0b"]').forEach(function(s){s.classList.add('on');});
+  window.scrollTo(0,0);
+}
+
+function bindPBEvents(){
+  // Sidebar items
+  document.querySelectorAll('.pb-si[data-pm]').forEach(function(el){
+    el.addEventListener('click',function(){
+      var pm=this.getAttribute('data-pm');
+      document.getElementById('pbSide').classList.remove('open');
+      if(pm==='overview'){renderPBOverview();bindPBCardClicks();}else if(pm==='guide'){renderPBIntro();}
+      else if(pm==='0b'){renderPBDetail(0);}
+      else{renderPBDetail(parseInt(pm));}
+    });
+  });
+  bindPBCardClicks();
+}
+
+function bindPBCardClicks(){
+  document.querySelectorAll('.pm-card[data-pmc]').forEach(function(el){
+    el.addEventListener('click',function(){
+      renderPBDetail(parseInt(this.getAttribute('data-pmc')));
+    });
+  });
+}
+
+// ===== BIND ALL NEW NAVIGATION =====
+// Startseite → Fach
+function navClick(id,fn){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.addEventListener('click',fn);
+  el.addEventListener('touchend',function(e){e.preventDefault();fn();});
+}
+
+navClick('navGK',function(){showPage('Pgk');});
+navClick('navWBS',function(){showPage('Pwbs');});
+navClick('gkBack',function(){showPage('P0');});
+navClick('wbsBack',function(){showPage('P0');});
+navClick('startGK',function(){startLab('gk');});
+navClick('startWBS',function(){startLab('wbs');});
+navClick('startPB',function(){startPB();});
+
+// Prompt library navigation
+document.getElementById('pbBack').addEventListener('click',function(){showPage('Pwbs');});
+document.getElementById('pbHome').addEventListener('click',function(){showPage('P0');});
+document.getElementById('pbMob').addEventListener('click',function(){document.getElementById('pbSide').classList.toggle('open');});
+
+// Lab navigation
+document.getElementById('mobMenu').addEventListener('click',function(){document.getElementById('sidebar').classList.toggle('open');});
+</script>
+</body>
+</html>
